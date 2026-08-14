@@ -1,0 +1,56 @@
+import { Locale, localeNames, useLocale } from "@/lib/locale";
+import { getWhatsAppUrl } from "@/lib/contact";
+import { ArrowLeft, ArrowUpRight, Check, ChevronRight, Layers3, MessageCircle, Plus, Sparkles } from "lucide-react";
+import { useMemo, useState } from "react";
+
+const markUrl = "/manus-storage/rasyine-deco-mark_ae9209a1.png";
+
+const models = [
+  { id: "orbit", image: "/manus-storage/rasyne-gallery-sculptural-sofa_19679fdc.jpg", title: { en: "Orbit Salon", fr: "Salon Orbit", ar: "صالون أوربت" }, note: { en: "A low, modular landscape for conversation.", fr: "Un paysage bas et modulable pour la conversation.", ar: "مساحة منخفضة ومرنة للحديث." } },
+  { id: "arc", image: "/manus-storage/rasyne-gallery-lounge-chair_0cc701fb.jpg", title: { en: "Arc Chair", fr: "Fauteuil Arc", ar: "كرسي آرك" }, note: { en: "A single gesture in leather, wood and stitch.", fr: "Un geste unique de cuir, bois et couture.", ar: "حركة واحدة من الجلد والخشب والغرز." } },
+  { id: "plinth", image: "/manus-storage/rasyne-gallery-dining-set_ed70bd1e.jpg", title: { en: "Plinth Table", fr: "Table Plinthe", ar: "طاولة بلينث" }, note: { en: "A dining object with a sculptural centre of gravity.", fr: "Un objet de repas au centre de gravité sculptural.", ar: "قطعة طعام ذات مركز ثقل نحتي." } },
+  { id: "cloud", image: "/manus-storage/rasyne-gallery-cloud-chaise_45f2e198.jpg", title: { en: "Cloud Chaise", fr: "Méridienne Cloud", ar: "أريكة كلاود" }, note: { en: "A soft landing for slow, sunlit afternoons.", fr: "Un refuge doux pour les après-midis baignés de soleil.", ar: "مكان ناعم لأمسيات هادئة ومضيئة." } },
+  { id: "touring", image: "/manus-storage/rasyne-gallery-auto-lounge_7ffd5029.jpg", title: { en: "Touring Bench", fr: "Banquette Touring", ar: "مقعد تورينغ" }, note: { en: "Automotive precision, translated for living rooms.", fr: "La précision automobile, traduite pour le salon.", ar: "دقة السيارات مترجمة لغرفة المعيشة." } },
+  { id: "pivot", image: "/manus-storage/rasyne-gallery-sculptural-stool_0db1f02b.jpg", title: { en: "Pivot Stool", fr: "Tabouret Pivot", ar: "مقعد بيفوت" }, note: { en: "A small object with a loud sculptural presence.", fr: "Une petite pièce à la présence sculpturale affirmée.", ar: "قطعة صغيرة بحضور نحتي قوي." } },
+] as const;
+
+const copy = {
+  en: { back: "Back to atelier", eyebrow: "Rasyne Deco · AI Furniture Lab", title: "Play with a future piece.", intro: "This is not a catalogue. It is a small digital atelier where an idea can move, mutate and become a real conversation.", objects: "Choose an object", materials: "Choose a skin", moods: "Choose a world", palette: "Choose a palette", room: "Choose a room", compare: "Compare", compareTitle: "Side by side", compareNote: "Pin up to two objects to see them together.", result: "Your design code", resultNote: "A starting direction, made for a real discussion with the workshop.", toStudio: "Open in Design Studio", toWhatsApp: "Discuss this model", design: "Design in motion", origin: "Made for a real workshop", materialsList: ["Ivory bouclé", "Cognac leather", "Terracotta velvet"], moodsList: ["Mediterranean calm", "Night gallery", "Soft brutalism"], palettesList: ["Sun & walnut", "Clay & brass", "Ink & chrome"], roomsList: ["Living room", "Reading corner", "Boutique lounge"], footer: "Move the sliders. Keep the story. Make it yours." },
+  fr: { back: "Retour à l’atelier", eyebrow: "Rasyne Deco · Laboratoire IA", title: "Jouez avec une pièce du futur.", intro: "Ce n’est pas un catalogue. C’est un petit atelier numérique où une idée peut bouger, muter et devenir une vraie conversation.", objects: "Choisissez un objet", materials: "Choisissez une peau", moods: "Choisissez un monde", palette: "Choisissez une palette", room: "Choisissez un espace", compare: "Comparer", compareTitle: "Côte à côte", compareNote: "Épinglez jusqu’à deux objets pour les voir ensemble.", result: "Votre code de design", resultNote: "Une direction de départ, pensée pour un vrai échange avec l’atelier.", toStudio: "Ouvrir dans le Design Studio", toWhatsApp: "Discuter de ce modèle", design: "Design en mouvement", origin: "Pensé pour une vraie main-d’œuvre", materialsList: ["Bouclé ivoire", "Cuir cognac", "Velours terracotta"], moodsList: ["Calme méditerranéen", "Galerie nocturne", "Brutalisme doux"], palettesList: ["Soleil et noyer", "Argile et laiton", "Encre et chrome"], roomsList: ["Salon", "Coin lecture", "Lounge de boutique"], footer: "Déplacez les curseurs. Gardez l’histoire. Faites-en la vôtre." },
+  ar: { back: "العودة إلى الورشة", eyebrow: "Rasyne Deco · مختبر الأثاث بالذكاء الاصطناعي", title: "العب بقطعة من المستقبل.", intro: "هذا ليس كتالوجاً. بل ورشة رقمية صغيرة تستطيع فيها الفكرة أن تتحرك وتتغير وتصبح حديثاً حقيقياً.", objects: "اختر قطعة", materials: "اختر الخامة", moods: "اختر العالَم", palette: "اختر لوحة ألوان", room: "اختر المساحة", compare: "قارن", compareTitle: "جنباً إلى جنب", compareNote: "ثبّت قطعتين كحد أقصى لرؤيتهما معاً.", result: "رمز تصميمك", resultNote: "اتجاه أولي مصمم لحوار حقيقي مع الورشة.", toStudio: "افتح في استوديو التصميم", toWhatsApp: "ناقش هذا النموذج", design: "تصميم في حركة", origin: "مصمم لورشة حقيقية", materialsList: ["بوكليه عاجي", "جلد كونياك", "مخمل تيراكوتا"], moodsList: ["هدوء متوسطي", "معرض ليلي", "وحشية ناعمة"], palettesList: ["شمس وجوز", "طين ونحاس", "حبر وكروم"], roomsList: ["غرفة معيشة", "زاوية قراءة", "صالة بوتيك"], footer: "حرّك الاختيارات. احتفظ بالقصة. اجعلها لك." },
+} satisfies Record<Locale, Record<string, string | string[]>>;
+
+export default function FurnitureLab() {
+  const { locale, setLocale } = useLocale();
+  const t = copy[locale];
+  const [modelIndex, setModelIndex] = useState(0);
+  const [materialIndex, setMaterialIndex] = useState(0);
+  const [moodIndex, setMoodIndex] = useState(0);
+  const [paletteIndex, setPaletteIndex] = useState(0);
+  const [roomIndex, setRoomIndex] = useState(0);
+  const [compareIndices, setCompareIndices] = useState<number[]>([0, 1]);
+  const model = models[modelIndex];
+  const material = (t.materialsList as string[])[materialIndex];
+  const mood = (t.moodsList as string[])[moodIndex];
+  const palette = (t.palettesList as string[])[paletteIndex];
+  const room = (t.roomsList as string[])[roomIndex];
+  const brief = useMemo(() => `Reimagine the ${model.title.en} for a ${room} in ${material}, using the ${palette} palette and a ${mood} mood. Keep its sculptural silhouette and make it appropriate for a real Rasyne Deco workshop.`, [model, material, mood, palette, room]);
+  const studioHref = `/studio?brief=${encodeURIComponent(brief)}&style=${encodeURIComponent(mood)}&material=${encodeURIComponent(material)}`;
+  const whatsappHref = getWhatsAppUrl(`Hello Rasyne Deco, I want to discuss the ${model.title.en}. My design direction is ${material}, ${mood}. I discovered it in the AI Furniture Lab.`);
+  const toggleComparison = (index: number) => setCompareIndices(current => current.includes(index) ? current.filter(item => item !== index) : current.length < 2 ? [...current, index] : [current[1], index]);
+
+  return <div className="lab-shell" dir={locale === "ar" ? "rtl" : "ltr"}>
+    <header className="lab-nav"><a href="/" className="lab-brand"><img src={markUrl} alt="Rasyne Deco" /><span><b>Rasyne</b> Deco</span></a><div className="lab-nav-actions"><a href="/" className="lab-back"><ArrowLeft size={16}/>{t.back as string}</a><div className="locale-switcher lab-locale">{(["en", "fr", "ar"] as Locale[]).map(item => <button key={item} onClick={() => setLocale(item)} className={locale === item ? "active" : ""}>{localeNames[item]}</button>)}</div></div></header>
+    <main className="lab-main">
+      <section className="lab-intro"><div><span className="lab-kicker"><Sparkles size={14}/>{t.eyebrow as string}</span><h1>{t.title as string}</h1></div><p>{t.intro as string}</p></section>
+      <section className="lab-stage">
+        <div className="lab-stage-meta"><span>01 — {t.design as string}</span><span>{t.origin as string}</span></div>
+        <div className="lab-object-frame"><img src={model.image} alt={model.title[locale]} /><div className="lab-object-glow"></div><div className="lab-object-name"><span>{String(modelIndex + 1).padStart(2, "0")}</span><h2>{model.title[locale]}</h2><p>{model.note[locale]}</p></div></div>
+        <div className="lab-model-rail" aria-label={t.objects as string}>{models.map((item, index) => <div className={`lab-model-item ${index === modelIndex ? "active" : ""}`} key={item.id}><button type="button" onClick={() => setModelIndex(index)}><span>{String(index + 1).padStart(2, "0")}</span><b>{item.title[locale]}</b><ChevronRight size={16}/></button><button type="button" className="lab-compare-toggle" onClick={() => toggleComparison(index)} aria-pressed={compareIndices.includes(index)}>{compareIndices.includes(index) ? <Check size={13}/> : <Plus size={13}/>} {t.compare as string}</button></div>)}</div>
+      </section>
+      {compareIndices.length > 0 && <section className="lab-compare-panel"><div><span className="lab-kicker"><Layers3 size={14}/>{t.compareTitle as string}</span><p>{t.compareNote as string}</p></div><div className="lab-compare-grid">{compareIndices.map(index => <article key={models[index].id}><img src={models[index].image} alt={models[index].title[locale]}/><h2>{models[index].title[locale]}</h2></article>)}</div></section>}
+      <section className="lab-console"><div className="lab-console-header"><span className="lab-kicker"><Layers3 size={14}/>{t.result as string}</span><p>{t.resultNote as string}</p></div><div className="lab-control-grid"><div className="lab-control"><span>{t.materials as string}</span><div className="lab-swatches">{(t.materialsList as string[]).map((item, index) => <button key={item} onClick={() => setMaterialIndex(index)} className={`swatch swatch-${index} ${materialIndex === index ? "active" : ""}`}><i></i>{item}</button>)}</div></div><div className="lab-control"><span>{t.moods as string}</span><div className="lab-moods">{(t.moodsList as string[]).map((item, index) => <button key={item} onClick={() => setMoodIndex(index)} className={moodIndex === index ? "active" : ""}>{item}</button>)}</div></div><div className="lab-control"><span>{t.palette as string}</span><div className="lab-moods">{(t.palettesList as string[]).map((item, index) => <button key={item} onClick={() => setPaletteIndex(index)} className={paletteIndex === index ? "active" : ""}>{item}</button>)}</div></div><div className="lab-control"><span>{t.room as string}</span><div className="lab-moods">{(t.roomsList as string[]).map((item, index) => <button key={item} onClick={() => setRoomIndex(index)} className={roomIndex === index ? "active" : ""}>{item}</button>)}</div></div><div className="lab-code"><span>RASYNE / {model.id.toUpperCase()} / {String(materialIndex + 1).padStart(2, "0")} / {String(moodIndex + 1).padStart(2, "0")}</span><p>{brief}</p></div></div><div className="lab-cta-row"><a href={studioHref} className="lab-primary"><Sparkles size={17}/>{t.toStudio as string}<ArrowUpRight size={17}/></a><a href={whatsappHref} target="_blank" rel="noreferrer" className="lab-whatsapp"><MessageCircle size={17}/>{t.toWhatsApp as string}</a></div></section>
+    </main>
+    <footer className="lab-footer">{t.footer as string}</footer>
+  </div>;
+}
