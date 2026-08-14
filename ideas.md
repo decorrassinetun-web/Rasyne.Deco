@@ -75,10 +75,6 @@ Arabic validation confirmed public Home, the AI Furniture Lab and the Design Stu
 
 The authenticated Arabic Atelier view was subsequently verified after stabilization. Its sidebar now moves to the right edge, the control icon and resize boundary follow the RTL direction, and the order desk, request states and inbox retain a clear right-aligned reading order.
 
-The landing page now visibly carries all six contemporary furniture pieces in a two-row editorial gallery, while the AI Furniture Lab exposes the same six models for selection and comparison. All six persistent media URLs returned HTTP 200 with `image/webp` content and the visual verification confirmed their loading in the public gallery.
-
-The raw workshop photography has been replaced in the public atelier story by two professional editorial scenes: a focused upholstery team at the sewing station and a measured material-preparation scene. They retain the truthful compact workshop scale while presenting it as ordered, clean and sophisticated. The Design Studio now opens with a dark Rasyne Design Command Deck and a true orbitable 3D sofa, where dimensions, comfort, material, leg finish and exploded/assembly state drive the visual study and flow into the order brief.
-
 ## Style Decisions
 
 - The hero must prioritize the generated living-room image with dark espresso text on the light negative-space side.

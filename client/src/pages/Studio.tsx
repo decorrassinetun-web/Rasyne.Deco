@@ -1,8 +1,6 @@
 import { Locale, localeNames, useLocale } from "@/lib/locale";
 import { getWhatsAppUrl } from "@/lib/contact";
 import { trpc } from "@/lib/trpc";
-import FurnitureCommandScene from "@/components/FurnitureCommandScene";
-import "./command-deck.css";
 import {
   ArrowLeft,
   ArrowUpRight,
@@ -14,13 +12,6 @@ import {
   RotateCcw,
   Send,
   MessageCircle,
-  Box,
-  Crosshair,
-  Cpu,
-  Layers3,
-  Orbit,
-  Ruler,
-  SlidersHorizontal,
   Sparkles,
   Upload,
   WandSparkles,
@@ -31,15 +22,9 @@ import { toast } from "sonner";
 
 const markUrl = "/manus-storage/rasyine-deco-mark_ae9209a1.png";
 
-const commandCopy = {
-  en: { badge: "Rasyne Design Command Deck", title: "Give the idea real coordinates.", text: "A live spatial study for proportion, comfort, material and construction before the visual concept is generated.", stage: "Live spatial model", orbit: "Drag to orbit · scroll to zoom", exploded: "Exploded view", assembled: "Assembly view", structure: "Structural controls", width: "Overall width", depth: "Seat depth", comfort: "Comfort index", material: "Material system", finish: "Leg finish", layers: "Construction layers", layerItems: ["Silhouette", "Seat system", "Back volume", "Arms", "Leg geometry"], materials: ["Ivory bouclé", "Cognac leather", "Terracotta velvet"], finishes: ["Walnut", "Brushed brass", "Espresso"], unit: "cm", config: "Configuration payload" },
-  fr: { badge: "Rasyne Design Command Deck", title: "Donnez de vraies coordonnées à l’idée.", text: "Une étude spatiale en direct pour la proportion, le confort, la matière et la construction avant de générer le concept visuel.", stage: "Modèle spatial en direct", orbit: "Glissez pour tourner · défilez pour zoomer", exploded: "Vue éclatée", assembled: "Vue assemblée", structure: "Contrôles structurels", width: "Largeur totale", depth: "Profondeur d’assise", comfort: "Indice de confort", material: "Système matière", finish: "Finition des pieds", layers: "Couches de construction", layerItems: ["Silhouette", "Système d’assise", "Volume du dossier", "Accoudoirs", "Géométrie des pieds"], materials: ["Bouclé ivoire", "Cuir cognac", "Velours terracotta"], finishes: ["Noyer", "Laiton brossé", "Espresso"], unit: "cm", config: "Configuration transmise" },
-  ar: { badge: "Rasyne Design Command Deck", title: "امنح الفكرة إحداثيات حقيقية.", text: "دراسة مكانية مباشرة للنِّسب والراحة والخامة والبنية قبل إنشاء التصور البصري.", stage: "نموذج مكاني مباشر", orbit: "اسحب للدوران · مرر للتكبير", exploded: "عرض مفكك", assembled: "عرض مركب", structure: "عناصر التحكم البنيوية", width: "العرض الكلي", depth: "عمق المقعد", comfort: "مؤشر الراحة", material: "نظام الخامة", finish: "تشطيب الأرجل", layers: "طبقات التكوين", layerItems: ["الهيئة", "نظام الجلوس", "حجم الظهر", "المساند", "هندسة الأرجل"], materials: ["بوكليه عاجي", "جلد كونياك", "مخمل تيراكوتا"], finishes: ["جوز", "نحاس مصقول", "إسبريسو"], unit: "سم", config: "بيانات التكوين" },
-} satisfies Record<Locale, Record<string, string | string[]>>;
-
 const labels = {
   en: {
-    back: "Back to atelier", badge: "Rasyne Deco · Design Studio", title: "Engineer a future piece from real-world craft.", subtitle: "Start with a reference or a precise direction, then use the command deck to study proportion, comfort, construction and material before we create the visual concept.",
+    back: "Back to atelier", badge: "Rasyne Deco · Design Studio", title: "Give a familiar piece a new point of view.", subtitle: "Upload a photo, or begin with a simple description. This tool creates a visual direction for conversation with our atelier — not a final quotation.",
     step1: "1. Choose your starting point", uploadTitle: "Add a reference photo", uploadText: "Sofa, chair, salon, car interior or fabric detail. JPG, PNG or WEBP, up to 8 MB.", uploadButton: "Choose a photo", noUpload: "I’m starting without a photo", photoReady: "Reference ready", uploading: "Uploading…", remove: "Remove", 
     step2: "2. Describe what you imagine", placeholder: "For example: Reupholster this three-seat salon in warm beige bouclé with slim walnut legs, a softer rounded profile, and a calm Mediterranean feeling.", voice: "Record your idea", stop: "Stop recording", transcribing: "Turning your voice into text…", 
     service: "Service", style: "Style direction", material: "Material / fabric", optional: "optional", generate: "Create visual concept", generating: "Creating your concept…", result: "Your design direction", resultText: "Use this visual concept to begin a real conversation with our workshop. Fine details, timing and cost are confirmed after review.", refine: "Create another direction",
@@ -47,7 +32,7 @@ const labels = {
     designWithout: "No image? No problem. Describe the room, object, material or feeling you want to create.", uploadError: "Please choose an image under 8 MB or an audio file under 16 MB.", required: "Write a little more about your idea before creating a concept.", recordError: "Microphone access is needed to record your idea.", orderRequired: "Please add your name, phone number and project description.", generationError: "Unable to create a concept right now.", orderError: "Unable to send the request right now.",
   },
   fr: {
-    back: "Retour à l’atelier", badge: "Rasyne Deco · Design Studio", title: "Concevez une pièce du futur à partir d’un vrai savoir-faire.", subtitle: "Partez d’une référence ou d’une direction précise, puis utilisez le command deck pour étudier la proportion, le confort, la construction et la matière avant de créer le concept visuel.",
+    back: "Retour à l’atelier", badge: "Rasyne Deco · Design Studio", title: "Donnez un nouveau regard à une pièce familière.", subtitle: "Téléversez une photo ou commencez par une simple description. Cet outil crée une direction visuelle pour échanger avec notre atelier — ce n’est pas un devis définitif.",
     step1: "1. Choisissez votre point de départ", uploadTitle: "Ajoutez une photo de référence", uploadText: "Canapé, fauteuil, salon, intérieur automobile ou détail de tissu. JPG, PNG ou WEBP, jusqu’à 8 Mo.", uploadButton: "Choisir une photo", noUpload: "Je commence sans photo", photoReady: "Référence prête", uploading: "Téléversement…", remove: "Retirer",
     step2: "2. Décrivez ce que vous imaginez", placeholder: "Par exemple : Réfection de ce salon trois places en bouclé beige chaud, avec des pieds fins en noyer, un profil plus arrondi et une ambiance méditerranéenne apaisée.", voice: "Enregistrer votre idée", stop: "Arrêter l’enregistrement", transcribing: "Votre voix devient un texte…",
     service: "Service", style: "Direction stylistique", material: "Matière / tissu", optional: "facultatif", generate: "Créer un concept visuel", generating: "Création du concept…", result: "Votre direction de design", resultText: "Utilisez ce concept visuel pour commencer un véritable échange avec l’atelier. Les détails, délais et prix sont confirmés après étude.", refine: "Créer une autre direction",
@@ -55,7 +40,7 @@ const labels = {
     designWithout: "Pas d’image ? Aucun problème. Décrivez la pièce, l’objet, la matière ou l’ambiance que vous souhaitez créer.", uploadError: "Choisissez une image de moins de 8 Mo ou un fichier audio de moins de 16 Mo.", required: "Décrivez un peu plus votre idée avant de créer un concept.", recordError: "L’accès au microphone est nécessaire pour enregistrer votre idée.", orderRequired: "Ajoutez votre nom, votre numéro et une description du projet.", generationError: "Impossible de créer un concept pour le moment.", orderError: "Impossible d’envoyer la demande pour le moment.",
   },
   ar: {
-    back: "العودة إلى الورشة", badge: "Rasyne Deco · استوديو التصميم", title: "صمّم قطعة مستقبلية من حِرفة واقعية.", subtitle: "ابدأ بمرجع أو اتجاه دقيق، ثم استخدم منصة القيادة لدراسة النسب والراحة والبنية والخامة قبل إنشاء التصور البصري.",
+    back: "العودة إلى الورشة", badge: "Rasyne Deco · استوديو التصميم", title: "امنح قطعة مألوفة منظوراً جديداً.", subtitle: "حمّل صورة أو ابدأ بوصف بسيط. تنشئ هذه الأداة اتجاهاً بصرياً للنقاش مع ورشتنا — وليست عرض سعر نهائي.",
     step1: "1. اختر نقطة البداية", uploadTitle: "أضف صورة مرجعية", uploadText: "كنبة، كرسي، صالون، داخل سيارة أو تفصيل قماش. JPG أو PNG أو WEBP حتى 8 ميغابايت.", uploadButton: "اختر صورة", noUpload: "سأبدأ دون صورة", photoReady: "المرجع جاهز", uploading: "جارٍ الرفع…", remove: "إزالة",
     step2: "2. صف ما تتخيله", placeholder: "مثلاً: جدّد هذا الصالون ذي الثلاثة مقاعد بقماش بوكليه بيج دافئ وأرجل جوز رفيعة وشكل دائري أكثر وإحساس متوسطي هادئ.", voice: "سجّل فكرتك", stop: "أوقف التسجيل", transcribing: "نحوّل صوتك إلى نص…",
     service: "الخدمة", style: "الاتجاه الأسلوبي", material: "المادة / القماش", optional: "اختياري", generate: "أنشئ تصوراً بصرياً", generating: "جارٍ إنشاء التصور…", result: "اتجاه تصميمك", resultText: "استخدم هذا التصور لبدء نقاش حقيقي مع الورشة. يتم تأكيد التفاصيل والمدة والتكلفة بعد المراجعة.", refine: "أنشئ اتجاهاً آخر",
@@ -86,7 +71,6 @@ function readAsDataUrl(file: File) {
 export default function Studio() {
   const { locale, setLocale } = useLocale();
   const t = labels[locale];
-  const command = commandCopy[locale];
   const fileInput = useRef<HTMLInputElement>(null);
   const recorder = useRef<MediaRecorder | null>(null);
   const chunks = useRef<Blob[]>([]);
@@ -100,20 +84,11 @@ export default function Studio() {
   const [conceptUrl, setConceptUrl] = useState<string | null>(null);
   const [orderSent, setOrderSent] = useState(false);
   const [customer, setCustomer] = useState({ fullName: "", phone: "", email: "", preferredContact: "whatsapp" as "phone" | "whatsapp" | "email" });
-  const [modelWidth, setModelWidth] = useState(280);
-  const [modelDepth, setModelDepth] = useState(96);
-  const [comfort, setComfort] = useState(7);
-  const [sceneMaterial, setSceneMaterial] = useState<"boucle" | "leather" | "velvet">("boucle");
-  const [legFinish, setLegFinish] = useState(0);
-  const [exploded, setExploded] = useState(false);
 
   const upload = trpc.studio.upload.useMutation();
   const transcribe = trpc.studio.transcribe.useMutation();
   const generate = trpc.studio.generate.useMutation();
   const createOrder = trpc.orders.create.useMutation();
-  const sceneAccent = ["#5a3424", "#c99f62", "#271713"][legFinish];
-  const furnitureConfig = `${command.config as string}: ${modelWidth}${command.unit as string} × ${modelDepth}${command.unit as string}; ${command.materials[sceneMaterial === "boucle" ? 0 : sceneMaterial === "leather" ? 1 : 2]}; ${(command.finishes as unknown as string[])[legFinish]}; ${command.comfort as string} ${comfort}/10; ${exploded ? (command.exploded as string) : (command.assembled as string)}.`;
-  const enrichedBrief = brief ? `${brief}\n\n${furnitureConfig}` : furnitureConfig;
 
   useEffect(() => {
     const query = new URLSearchParams(window.location.search);
@@ -195,7 +170,7 @@ export default function Studio() {
       return;
     }
     try {
-      const result = await generate.mutateAsync({ brief: enrichedBrief, service, style: style || undefined, material: material || undefined, referenceKey: reference?.key, referenceMimeType: reference?.mimeType as "image/jpeg" | "image/png" | "image/webp" | undefined });
+      const result = await generate.mutateAsync({ brief, service, style: style || undefined, material: material || undefined, referenceKey: reference?.key, referenceMimeType: reference?.mimeType as "image/jpeg" | "image/png" | "image/webp" | undefined });
       setConceptUrl(result.url);
       toast.success(t.result);
     } catch (error) {
@@ -214,7 +189,7 @@ export default function Studio() {
         ...customer,
         email: customer.email || undefined,
         service,
-        brief: enrichedBrief,
+        brief,
         style: style || undefined,
         material: material || undefined,
         referenceKey: reference?.key,
@@ -228,7 +203,7 @@ export default function Studio() {
       toast.error(error instanceof Error ? error.message : t.orderError);
     }
   };
-  const shareOrderHref = getWhatsAppUrl(`Hello Rasyne Deco, here is my design brief:\n${enrichedBrief}\n\nReference image: ${reference?.url ?? "not attached"}\nConcept image: ${conceptUrl ?? "not generated"}`);
+  const shareOrderHref = getWhatsAppUrl(`Hello Rasyne Deco, here is my design brief:\n${brief}\n\nReference image: ${reference?.url ?? "not attached"}\nConcept image: ${conceptUrl ?? "not generated"}`);
 
   return (
     <div className="studio-shell" dir={locale === "ar" ? "rtl" : "ltr"}>
@@ -239,27 +214,6 @@ export default function Studio() {
 
       <main className="studio-main">
         <section className="studio-heading"><div><span className="studio-kicker"><Sparkles size={14}/>{t.badge}</span><h1>{t.title}</h1></div><p>{t.subtitle}</p></section>
-
-        <section className="command-deck">
-          <div className="command-deck-head"><div><span className="studio-kicker"><Cpu size={14}/>{command.badge as string}</span><h2>{command.title as string}</h2></div><p>{command.text as string}</p></div>
-          <div className="command-grid">
-            <div className="command-stage">
-              <div className="stage-topline"><span><Crosshair size={14}/>{command.stage as string}</span><span>{command.orbit as string}</span></div>
-              <div className="scene-wrap"><FurnitureCommandScene width={modelWidth / 95} depth={modelDepth / 95} comfort={comfort} material={sceneMaterial} accent={sceneAccent} exploded={exploded}/></div>
-              <div className="stage-bottomline"><div><b>{modelWidth}</b><span>{command.unit as string} / W</span></div><div><b>{modelDepth}</b><span>{command.unit as string} / D</span></div><div><b>{comfort}</b><span>/ 10</span></div><button type="button" className={exploded ? "active" : ""} onClick={() => setExploded(value => !value)}><Layers3 size={15}/>{exploded ? command.assembled as string : command.exploded as string}</button></div>
-              <span className="orbit-ring orbit-ring-one"></span><span className="orbit-ring orbit-ring-two"></span>
-            </div>
-            <aside className="command-controls">
-              <div className="control-heading"><span><SlidersHorizontal size={15}/>{command.structure as string}</span><b>R-01</b></div>
-              <label className="range-control"><span><Ruler size={14}/>{command.width as string}<b>{modelWidth} {command.unit as string}</b></span><input type="range" min="190" max="360" value={modelWidth} onChange={event => setModelWidth(Number(event.target.value))}/></label>
-              <label className="range-control"><span><Ruler size={14}/>{command.depth as string}<b>{modelDepth} {command.unit as string}</b></span><input type="range" min="72" max="130" value={modelDepth} onChange={event => setModelDepth(Number(event.target.value))}/></label>
-              <label className="range-control"><span><Orbit size={14}/>{command.comfort as string}<b>{comfort}/10</b></span><input type="range" min="2" max="10" value={comfort} onChange={event => setComfort(Number(event.target.value))}/></label>
-              <div className="command-option"><span>{command.material as string}</span><div className="material-options">{(command.materials as unknown as string[]).map((item, index) => { const value = (["boucle", "leather", "velvet"] as const)[index]; return <button type="button" key={value} onClick={() => setSceneMaterial(value)} className={sceneMaterial === value ? "active" : ""}><i className={`material-dot ${value}`}></i>{item}</button>; })}</div></div>
-              <div className="command-option"><span>{command.finish as string}</span><div className="finish-options">{(command.finishes as unknown as string[]).map((item, index) => <button type="button" key={item} onClick={() => setLegFinish(index)} className={legFinish === index ? "active" : ""}>{item}</button>)}</div></div>
-            </aside>
-          </div>
-          <div className="command-layers"><div><span className="studio-kicker"><Box size={14}/>{command.layers as string}</span><p>{furnitureConfig}</p></div><ol>{(command.layerItems as unknown as string[]).map((item, index) => <li key={item}><span>{String(index + 1).padStart(2, "0")}</span>{item}<i></i></li>)}</ol></div>
-        </section>
 
         <section className="studio-workbench">
           <div className="studio-column studio-inputs">
