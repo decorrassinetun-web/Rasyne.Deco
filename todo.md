@@ -1,0 +1,58 @@
+# Rasyne Deco — suivi de réalisation
+
+- [x] Confirmer et appliquer le nom de marque « Rasyne Deco » partout dans l’interface.
+- [x] Définir une direction artistique sophistiquée, chaleureuse et éditoriale pour la landing page.
+- [x] Préparer les contenus en anglais, français et arabe.
+- [x] Ajouter le sélecteur de langue avec mémorisation du choix utilisateur.
+- [x] Implémenter le support RTL complet pour l’arabe, y compris l’ordre visuel et les alignements.
+- [x] Construire les sections services : mobilier, salons, fauteuils, canapés et sellerie automobile.
+- [x] Ajouter des interactions de qualité : navigation, reveal, galerie ou avant/après et formulaire de contact.
+- [x] Vérifier l’accessibilité, le responsive design et le contraste dans les trois langues.
+- [x] Ajouter l’adresse officielle : Avenue Karaia, Sayada 5035, Monastir.
+- [x] Intégrer les photographies authentiques de l’atelier dans une section dédiée au savoir-faire.
+- [x] Ajouter un Design Studio permettant de travailler avec ou sans image de référence.
+- [x] Ajouter une zone de téléversement avec aperçu et suppression de fichier.
+- [x] Ajouter une saisie de prompt textuel simple et guidée.
+- [x] Ajouter une commande de prompt vocal avec transcription exploitable.
+- [x] Préparer l’architecture full-stack nécessaire aux services IA, stockage et audio.
+- [x] Afficher un état de génération, une prévisualisation du résultat et des états d’erreur clairs.
+- [x] Ajouter un formulaire de demande de commande pour tapisserie, réfection et revêtement de salon.
+- [x] Enregistrer le prompt, les références visuelles, les préférences et les coordonnées du client avec chaque demande.
+- [x] Ajouter un espace propriétaire pour consulter les demandes et suivre leur statut.
+- [x] Positionner la marque comme un atelier artisanal à taille humaine, avec une présence numérique internationale mais sans promesses de grande structure.
+- [x] Effectuer une passe finale de validation visuelle et fonctionnelle.
+- [x] Ajouter un formulaire de contact multilingue, distinct de la demande de commande, avec validation et états de succès ou d’erreur.
+- [x] Finaliser la couverture RTL et arabe des parcours concernés, y compris les libellés, alignements et affordances directionnelles restants.
+- [x] Localiser les libellés, options et microcopies encore en anglais dans les parcours Studio et Atelier exposés.
+- [x] Vérifier et corriger les flèches, chevrons, alignements et ordre visuel dans Home, Studio et Atelier en mode RTL.
+- [x] Créer une galerie visuelle plus audacieuse montrant une collection riche de mobilier contemporain.
+- [ ] Produire et intégrer un film cinématique montrant une équipe de l’atelier en mission de conception et de restauration.
+- [ ] Mettre en scène dans le film les étapes concrètes de rénovation : inspection, démontage, choix des matières, couture, garnissage et révélation finale.
+- [x] Renforcer le récit de marque afin que le site se lise comme une maison de design contemporaine, sans masquer l’échelle artisanale de l’atelier.
+- [ ] Ajouter des appels à conversation vers WhatsApp, Instagram et Facebook depuis la landing page et le Design Studio.
+- [x] Permettre au visiteur de transmettre un modèle, une image de référence ou son brief au propriétaire par un parcours de messagerie clair.
+- [x] Centraliser les liens sociaux et le numéro WhatsApp pour faciliter leur mise à jour par l’atelier.
+- [ ] Brancher les liens définitifs Instagram et Facebook lorsque les profils auront été créés par l’atelier.
+- [x] Ajouter un AI Furniture Lab ludique où les visiteurs explorent, personnalisent et comparent des modèles de mobilier moderne.
+- [x] Ajouter des contrôles de style, matière, palette et type de pièce qui alimentent directement le brief de conception IA.
+- [x] Permettre de sélectionner un modèle du laboratoire puis de l’ajouter à une demande de commande ou à une discussion WhatsApp.
+- [x] Donner à l’AI Furniture Lab une grammaire visuelle expérimentale : compositions spatiales, interactions tactiles, transitions cinématiques et surfaces inspirées des matériaux.
+- [x] Finaliser les affordances RTL restantes sur Home, Studio et Atelier, y compris chevrons, flèches de cartes et menu mobile.
+- [x] Enrichir la galerie avec des pièces contemporaines supplémentaires et confirmer la disponibilité de tous les visuels générés.
+- [x] Ajouter un partage WhatsApp clair du brief, de l’image de référence et du concept généré après une commande Studio.
+- [x] Ajouter une comparaison côte à côte de plusieurs modèles dans l’AI Furniture Lab.
+- [x] Ajouter des contrôles explicites de palette et de type de pièce dans l’AI Furniture Lab et les injecter dans le brief de création.
+- [x] Étendre la galerie visible de la landing page avec les trois nouvelles pièces contemporaines.
+- [x] Vérifier toutes les URLs d’images générées utilisées dans Home et AI Furniture Lab, puis revalider visuellement les deux pages.
+- [x] Remplacer les photos brutes de l’atelier par des images éditoriales réalistes d’une équipe professionnelle au travail.
+- [x] Représenter l’atelier comme un espace compact, ordonné, propre et sophistiqué, sans le faire paraître comme une grande usine.
+- [x] Mettre à jour la section « Inside the atelier » et les visuels associés avec cette nouvelle direction professionnelle.
+- [x] Transformer le Design Studio en command deck de conception avancée, avec une hiérarchie visuelle immersive et non générique.
+- [x] Ajouter une scène 3D interactive de mobilier avec orbite, zoom et représentation spatiale crédible.
+- [x] Ajouter des paramètres de structure, de dimensions, d’ergonomie, de matières et de finitions qui modifient la scène 3D.
+- [x] Transmettre la configuration 3D, le brief et les références vers la demande de commande et la conversation WhatsApp.
+- [x] Vérifier que les deux nouvelles images d’atelier sont servies comme contenus finaux, et non comme placeholders ou assets échoués.
+- [x] Revalider visuellement la section « Inside the atelier » avec les deux images finalisées, afin de confirmer le rendu professionnel, compact, propre et sophistiqué.
+- [ ] Préparer une sauvegarde GitHub du code complet et de la configuration versionnable du projet.
+- [ ] Connecter le projet au dépôt GitHub choisi et y envoyer la version actuelle.
+- [ ] Vérifier que le dépôt GitHub contient la version sauvegardée de Rasyne Deco.
