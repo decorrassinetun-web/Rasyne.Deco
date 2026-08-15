@@ -24,11 +24,14 @@ const heroUrl = "/manus-storage/rasyine-deco-hero_274855ee.jpg";
 const livingUrl = "/manus-storage/rasyine-deco-living-room_597a6552.jpg";
 const detailUrl = "/manus-storage/rasyine-deco-chair-detail_c162ac80.jpg";
 const autoUrl = "/manus-storage/rasyine-deco-auto_079a4f3c.jpg";
-const atelierMachinesUrl = "/manus-storage/rasyine-atelier-machines_53380334.jpg";
-const atelierCuttingUrl = "/manus-storage/rasyine-atelier-cutting_7cc9350f.jpg";
+const atelierMachinesUrl = "/manus-storage/rasyne-atelier-craft-team-editorial_b582691e.jpg";
+const atelierCuttingUrl = "/manus-storage/rasyne-atelier-pattern-table-editorial_d0b6762a.jpg";
 const labSofaUrl = "/manus-storage/rasyne-gallery-sculptural-sofa_19679fdc.jpg";
 const labChairUrl = "/manus-storage/rasyne-gallery-lounge-chair_0cc701fb.jpg";
 const labDiningUrl = "/manus-storage/rasyne-gallery-dining-set_ed70bd1e.jpg";
+const labChaiseUrl = "/manus-storage/rasyne-gallery-cloud-chaise_45f2e198.jpg";
+const labAutoLoungeUrl = "/manus-storage/rasyne-gallery-auto-lounge_7ffd5029.jpg";
+const labStoolUrl = "/manus-storage/rasyne-gallery-sculptural-stool_0db1f02b.jpg";
 
 const copy = {
   en: {
@@ -304,7 +307,7 @@ export default function Home() {
 
         <section id="lab" className="lab-preview-section section-padding">
           <div className="lab-preview-heading"><div><p className="eyebrow dark"><span></span>{t.labLabel}</p><h2>{t.labTitle}</h2></div><p>{t.labText}</p><a href="/lab" className="button-primary">{t.labCta}<ArrowUpRight size={17}/></a></div>
-          <div className="lab-preview-gallery"><figure><img src={labSofaUrl} alt="Sculptural modular sofa concept"/><figcaption>01 / ORBIT</figcaption></figure><figure><img src={labChairUrl} alt="Contemporary lounge chair concept"/><figcaption>02 / ARC</figcaption></figure><figure><img src={labDiningUrl} alt="Contemporary dining furniture concept"/><figcaption>03 / PLINTH</figcaption></figure></div>
+          <div className="lab-preview-gallery"><figure><img src={labSofaUrl} alt="Sculptural modular sofa concept"/><figcaption>01 / ORBIT</figcaption></figure><figure><img src={labChairUrl} alt="Contemporary lounge chair concept"/><figcaption>02 / ARC</figcaption></figure><figure><img src={labDiningUrl} alt="Contemporary dining furniture concept"/><figcaption>03 / PLINTH</figcaption></figure><figure><img src={labChaiseUrl} alt="Contemporary chaise lounge concept"/><figcaption>04 / CLOUD</figcaption></figure><figure><img src={labAutoLoungeUrl} alt="Automotive-inspired lounge bench concept"/><figcaption>05 / TOURING</figcaption></figure><figure><img src={labStoolUrl} alt="Sculptural stool concept"/><figcaption>06 / PIVOT</figcaption></figure></div>
         </section>
 
         <section className="studio-promo">
@@ -327,8 +330,8 @@ export default function Home() {
             <p className="atelier-description">{t.atelierText}</p>
           </div>
           <div className="atelier-gallery">
-            <figure className="atelier-photo atelier-photo-large"><img src={atelierMachinesUrl} alt="The Rasyne Deco workshop and sewing machines" /><figcaption>01 — Documentary craft: upholstery in progress</figcaption></figure>
-            <figure className="atelier-photo atelier-photo-small"><img src={atelierCuttingUrl} alt="Fabric preparation inside the Rasyne Deco workshop" /><figcaption>02 — Documentary craft: measuring by hand</figcaption></figure>
+            <figure className="atelier-photo atelier-photo-large"><img src={atelierMachinesUrl} alt="Professional Rasyne Deco upholsterers at work in the atelier" /><figcaption>01 — Precision upholstery: craft in progress</figcaption></figure>
+            <figure className="atelier-photo atelier-photo-small"><img src={atelierCuttingUrl} alt="Professional fabric preparation inside the Rasyne Deco atelier" /><figcaption>02 — Material study: measured by hand</figcaption></figure>
             <div className="atelier-statement"><span>From Sayada<br />to your interior.</span><ArrowDownRight size={34} /></div>
           </div>
         </section>
