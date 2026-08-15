@@ -38,7 +38,21 @@
 - [x] Permettre de sélectionner un modèle du laboratoire puis de l’ajouter à une demande de commande ou à une discussion WhatsApp.
 - [x] Donner à l’AI Furniture Lab une grammaire visuelle expérimentale : compositions spatiales, interactions tactiles, transitions cinématiques et surfaces inspirées des matériaux.
 - [x] Finaliser les affordances RTL restantes sur Home, Studio et Atelier, y compris chevrons, flèches de cartes et menu mobile.
-- [ ] Enrichir la galerie avec des pièces contemporaines supplémentaires et confirmer la disponibilité de tous les visuels générés.
+- [x] Enrichir la galerie avec des pièces contemporaines supplémentaires et confirmer la disponibilité de tous les visuels générés.
 - [x] Ajouter un partage WhatsApp clair du brief, de l’image de référence et du concept généré après une commande Studio.
 - [x] Ajouter une comparaison côte à côte de plusieurs modèles dans l’AI Furniture Lab.
 - [x] Ajouter des contrôles explicites de palette et de type de pièce dans l’AI Furniture Lab et les injecter dans le brief de création.
+- [x] Étendre la galerie visible de la landing page avec les trois nouvelles pièces contemporaines.
+- [x] Vérifier toutes les URLs d’images générées utilisées dans Home et AI Furniture Lab, puis revalider visuellement les deux pages.
+- [x] Remplacer les photos brutes de l’atelier par des images éditoriales réalistes d’une équipe professionnelle au travail.
+- [x] Représenter l’atelier comme un espace compact, ordonné, propre et sophistiqué, sans le faire paraître comme une grande usine.
+- [x] Mettre à jour la section « Inside the atelier » et les visuels associés avec cette nouvelle direction professionnelle.
+- [x] Transformer le Design Studio en command deck de conception avancée, avec une hiérarchie visuelle immersive et non générique.
+- [x] Ajouter une scène 3D interactive de mobilier avec orbite, zoom et représentation spatiale crédible.
+- [x] Ajouter des paramètres de structure, de dimensions, d’ergonomie, de matières et de finitions qui modifient la scène 3D.
+- [x] Transmettre la configuration 3D, le brief et les références vers la demande de commande et la conversation WhatsApp.
+- [x] Vérifier que les deux nouvelles images d’atelier sont servies comme contenus finaux, et non comme placeholders ou assets échoués.
+- [x] Revalider visuellement la section « Inside the atelier » avec les deux images finalisées, afin de confirmer le rendu professionnel, compact, propre et sophistiqué.
+- [x] Préparer une sauvegarde GitHub du code complet et de la configuration versionnable du projet.
+- [x] Connecter le projet au dépôt GitHub choisi et y envoyer la version actuelle.
+- [x] Vérifier que le dépôt GitHub contient la version sauvegardée de Rasyne Deco.
