@@ -56,3 +56,13 @@
 - [x] Préparer une sauvegarde GitHub du code complet et de la configuration versionnable du projet.
 - [x] Connecter le projet au dépôt GitHub choisi et y envoyer la version actuelle.
 - [x] Vérifier que le dépôt GitHub contient la version sauvegardée de Rasyne Deco.
+- [ ] Vérifier le contenu local disponible avant la synchronisation GitHub demandée.
+- [ ] Activer l’intégration GitHub dans le projet avant la synchronisation demandée.
+- [ ] Envoyer le code disponible de Rasyne Deco sur la branche principale du dépôt GitHub.
+- [ ] Vérifier le commit distant et les fichiers clés après cette synchronisation GitHub.
+- [x] Construire un Material Observatory interactif pour explorer et sélectionner tissus, cuirs, textures et finitions.
+- [x] Ajouter un dossier de projet dynamique dans le Design Studio, utilisable avant commande et pour le partage WhatsApp.
+- [x] Étendre le Material Observatory à l’exploration et la sélection de finitions — noyer, laiton brossé et espresso — reliées au dossier et au brief.
+- [x] Revalider visuellement l’Observatory une fois la sélection complète matières + finitions intégrée.
+- [x] Ajouter une conversation WhatsApp contextuelle entre Home, Furniture Lab, Rasyne Worlds et Design Studio.
+- [x] Renforcer le récit de transformation de la landing page par une séquence éditoriale immersive sans fabriquer d’avis clients.

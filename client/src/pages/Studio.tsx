@@ -3,6 +3,8 @@ import { getWhatsAppUrl } from "@/lib/contact";
 import { trpc } from "@/lib/trpc";
 import FurnitureCommandScene from "@/components/FurnitureCommandScene";
 import "./command-deck.css";
+import "./studio-augmentation.css";
+import "./studio-finish-compass.css";
 import {
   ArrowLeft,
   ArrowUpRight,
@@ -15,6 +17,7 @@ import {
   Send,
   MessageCircle,
   Box,
+  Clipboard,
   Crosshair,
   Cpu,
   Layers3,
@@ -32,9 +35,9 @@ import { toast } from "sonner";
 const markUrl = "/manus-storage/rasyine-deco-mark_ae9209a1.png";
 
 const commandCopy = {
-  en: { badge: "Rasyne Design Command Deck", title: "Give the idea real coordinates.", text: "A live spatial study for proportion, comfort, material and construction before the visual concept is generated.", stage: "Live spatial model", orbit: "Drag to orbit · scroll to zoom", exploded: "Exploded view", assembled: "Assembly view", structure: "Structural controls", width: "Overall width", depth: "Seat depth", comfort: "Comfort index", material: "Material system", finish: "Leg finish", layers: "Construction layers", layerItems: ["Silhouette", "Seat system", "Back volume", "Arms", "Leg geometry"], materials: ["Ivory bouclé", "Cognac leather", "Terracotta velvet"], finishes: ["Walnut", "Brushed brass", "Espresso"], unit: "cm", config: "Configuration payload" },
-  fr: { badge: "Rasyne Design Command Deck", title: "Donnez de vraies coordonnées à l’idée.", text: "Une étude spatiale en direct pour la proportion, le confort, la matière et la construction avant de générer le concept visuel.", stage: "Modèle spatial en direct", orbit: "Glissez pour tourner · défilez pour zoomer", exploded: "Vue éclatée", assembled: "Vue assemblée", structure: "Contrôles structurels", width: "Largeur totale", depth: "Profondeur d’assise", comfort: "Indice de confort", material: "Système matière", finish: "Finition des pieds", layers: "Couches de construction", layerItems: ["Silhouette", "Système d’assise", "Volume du dossier", "Accoudoirs", "Géométrie des pieds"], materials: ["Bouclé ivoire", "Cuir cognac", "Velours terracotta"], finishes: ["Noyer", "Laiton brossé", "Espresso"], unit: "cm", config: "Configuration transmise" },
-  ar: { badge: "Rasyne Design Command Deck", title: "امنح الفكرة إحداثيات حقيقية.", text: "دراسة مكانية مباشرة للنِّسب والراحة والخامة والبنية قبل إنشاء التصور البصري.", stage: "نموذج مكاني مباشر", orbit: "اسحب للدوران · مرر للتكبير", exploded: "عرض مفكك", assembled: "عرض مركب", structure: "عناصر التحكم البنيوية", width: "العرض الكلي", depth: "عمق المقعد", comfort: "مؤشر الراحة", material: "نظام الخامة", finish: "تشطيب الأرجل", layers: "طبقات التكوين", layerItems: ["الهيئة", "نظام الجلوس", "حجم الظهر", "المساند", "هندسة الأرجل"], materials: ["بوكليه عاجي", "جلد كونياك", "مخمل تيراكوتا"], finishes: ["جوز", "نحاس مصقول", "إسبريسو"], unit: "سم", config: "بيانات التكوين" },
+  en: { badge: "Rasyne Design Command Deck", title: "Give the idea real coordinates.", text: "A live spatial study for proportion, comfort, material and construction before the visual concept is generated.", stage: "Live spatial model", orbit: "Drag to orbit · scroll to zoom", exploded: "Exploded view", assembled: "Assembly view", structure: "Structural controls", width: "Overall width", depth: "Seat depth", comfort: "Comfort index", material: "Material system", finish: "Leg finish", layers: "Construction layers", layerItems: ["Silhouette", "Seat system", "Back volume", "Arms", "Leg geometry"], materials: ["Ivory bouclé", "Cognac leather", "Terracotta velvet"], finishes: ["Walnut", "Brushed brass", "Espresso"], unit: "cm", config: "Configuration payload", observatory: "Material Observatory", observeText: "Select a surface and let its behavior enter your study.", materialNotes: ["Dense weave · cloud-soft reflection", "Hand-finished grain · warm patina", "Directional pile · saturated depth", "Mineral surface · calm architectural ground"], dossier: "Live project dossier", dossierText: "A clean packet of the current study, ready for the atelier.", copy: "Copy dossier", share: "Send to atelier", dimensions: "Dimensions", contactDossier: "Project signal" },
+  fr: { badge: "Rasyne Design Command Deck", title: "Donnez de vraies coordonnées à l’idée.", text: "Une étude spatiale en direct pour la proportion, le confort, la matière et la construction avant de générer le concept visuel.", stage: "Modèle spatial en direct", orbit: "Glissez pour tourner · défilez pour zoomer", exploded: "Vue éclatée", assembled: "Vue assemblée", structure: "Contrôles structurels", width: "Largeur totale", depth: "Profondeur d’assise", comfort: "Indice de confort", material: "Système matière", finish: "Finition des pieds", layers: "Couches de construction", layerItems: ["Silhouette", "Système d’assise", "Volume du dossier", "Accoudoirs", "Géométrie des pieds"], materials: ["Bouclé ivoire", "Cuir cognac", "Velours terracotta"], finishes: ["Noyer", "Laiton brossé", "Espresso"], unit: "cm", config: "Configuration transmise", observatory: "Observatoire des matières", observeText: "Choisissez une surface et intégrez son comportement à votre étude.", materialNotes: ["Tissage dense · reflet nuageux", "Grain fini main · patine chaleureuse", "Poil directionnel · profondeur saturée", "Surface minérale · fond architectural calme"], dossier: "Dossier de projet vivant", dossierText: "Une fiche nette de l’étude en cours, prête pour l’atelier.", copy: "Copier le dossier", share: "Envoyer à l’atelier", dimensions: "Dimensions", contactDossier: "Signal du projet" },
+  ar: { badge: "Rasyne Design Command Deck", title: "امنح الفكرة إحداثيات حقيقية.", text: "دراسة مكانية مباشرة للنِّسب والراحة والخامة والبنية قبل إنشاء التصور البصري.", stage: "نموذج مكاني مباشر", orbit: "اسحب للدوران · مرر للتكبير", exploded: "عرض مفكك", assembled: "عرض مركب", structure: "عناصر التحكم البنيوية", width: "العرض الكلي", depth: "عمق المقعد", comfort: "مؤشر الراحة", material: "نظام الخامة", finish: "تشطيب الأرجل", layers: "طبقات التكوين", layerItems: ["الهيئة", "نظام الجلوس", "حجم الظهر", "المساند", "هندسة الأرجل"], materials: ["بوكليه عاجي", "جلد كونياك", "مخمل تيراكوتا"], finishes: ["جوز", "نحاس مصقول", "إسبريسو"], unit: "سم", config: "بيانات التكوين", observatory: "مرصد الخامات", observeText: "اختر سطحاً ودع خصائصه تدخل دراستك.", materialNotes: ["نسيج كثيف · انعكاس ناعم", "حبيبات مشغولة يدوياً · عراقة دافئة", "وبر اتجاهي · عمق مشبع", "سطح معدني · أرضية معمارية هادئة"], dossier: "ملف مشروع حي", dossierText: "حزمة واضحة للدراسة الحالية وجاهزة للورشة.", copy: "نسخ الملف", share: "أرسله إلى الورشة", dimensions: "الأبعاد", contactDossier: "إشارة المشروع" },
 } satisfies Record<Locale, Record<string, string | string[]>>;
 
 const labels = {
@@ -106,6 +109,7 @@ export default function Studio() {
   const [sceneMaterial, setSceneMaterial] = useState<"boucle" | "leather" | "velvet">("boucle");
   const [legFinish, setLegFinish] = useState(0);
   const [exploded, setExploded] = useState(false);
+  const [activeStudy, setActiveStudy] = useState(0);
 
   const upload = trpc.studio.upload.useMutation();
   const transcribe = trpc.studio.transcribe.useMutation();
@@ -114,6 +118,29 @@ export default function Studio() {
   const sceneAccent = ["#5a3424", "#c99f62", "#271713"][legFinish];
   const furnitureConfig = `${command.config as string}: ${modelWidth}${command.unit as string} × ${modelDepth}${command.unit as string}; ${command.materials[sceneMaterial === "boucle" ? 0 : sceneMaterial === "leather" ? 1 : 2]}; ${(command.finishes as unknown as string[])[legFinish]}; ${command.comfort as string} ${comfort}/10; ${exploded ? (command.exploded as string) : (command.assembled as string)}.`;
   const enrichedBrief = brief ? `${brief}\n\n${furnitureConfig}` : furnitureConfig;
+  const materialStudies = [
+    { id: "boucle", title: (command.materials as string[])[0], className: "boucle", scene: "boucle" as const },
+    { id: "leather", title: (command.materials as string[])[1], className: "leather", scene: "leather" as const },
+    { id: "velvet", title: (command.materials as string[])[2], className: "velvet", scene: "velvet" as const },
+    { id: "plaster", title: locale === "fr" ? "Plâtre minéral" : locale === "ar" ? "جص معدني" : "Mineral plaster", className: "plaster", scene: "boucle" as const },
+  ];
+  const finishSignals = locale === "fr" ? ["Grain sculpté · douceur architecturale", "Éclat satiné · ligne de précision", "Noir profond · contraste graphique"] : locale === "ar" ? ["عروق منحوتة · دفء معماري", "بريق حريري · خط دقيق", "سواد عميق · تباين رسومي"] : ["Sculpted grain · architectural warmth", "Satin glow · precision line", "Deep black · graphic contrast"];
+  const projectDossier = `${command.dossier as string}\n${furnitureConfig}\n${command.contactDossier as string}: ${service}\n${command.material as string}: ${material || materialStudies[activeStudy].title}\n${command.config as string}: ${brief || "—"}`;
+  const dossierHref = getWhatsAppUrl(`Hello Rasyne Deco, ${projectDossier}`);
+
+  const selectMaterialStudy = (index: number) => {
+    const study = materialStudies[index];
+    setActiveStudy(index);
+    setSceneMaterial(study.scene);
+    setMaterial(study.title);
+  };
+
+  const selectFinishStudy = (index: number) => setLegFinish(index);
+
+  const copyDossier = async () => {
+    await navigator.clipboard?.writeText(projectDossier);
+    toast.success(command.copy as string);
+  };
 
   useEffect(() => {
     const query = new URLSearchParams(window.location.search);
@@ -259,6 +286,18 @@ export default function Studio() {
             </aside>
           </div>
           <div className="command-layers"><div><span className="studio-kicker"><Box size={14}/>{command.layers as string}</span><p>{furnitureConfig}</p></div><ol>{(command.layerItems as unknown as string[]).map((item, index) => <li key={item}><span>{String(index + 1).padStart(2, "0")}</span>{item}<i></i></li>)}</ol></div>
+        </section>
+
+        <section className="material-observatory">
+          <div className="augmentation-head"><div><span className="studio-kicker"><Sparkles size={14}/>{command.observatory as string}</span><h3>{command.observatory as string}</h3></div><p>{command.observeText as string}</p></div>
+          <div className="material-study-grid">{materialStudies.map((study, index) => <button type="button" key={study.id} onClick={() => selectMaterialStudy(index)} className={`material-study ${activeStudy === index ? "active" : ""}`}><i className={`material-swatch ${study.className}`}></i><b>{study.title}</b><small>{String(index + 1).padStart(2, "0")} / MATERIAL SIGNAL</small></button>)}</div>
+          <div className="material-reading"><i></i><span>{(command.materialNotes as string[])[activeStudy]}</span></div>
+          <div className="finish-compass"><span className="studio-kicker"><Layers3 size={14}/>{command.finish as string}</span><div>{(command.finishes as string[]).map((item, index) => <button type="button" key={item} onClick={() => selectFinishStudy(index)} className={`finish-study ${legFinish === index ? "active" : ""}`}><i className={`finish-swatch finish-${index}`}></i><b>{item}</b><small>{finishSignals[index]}</small></button>)}</div></div>
+        </section>
+
+        <section className="project-dossier">
+          <div className="dossier-head"><div><span className="studio-kicker"><Clipboard size={14}/>{command.dossier as string}</span><h3>{command.dossier as string}</h3></div><div><p>{command.dossierText as string}</p><div className="dossier-actions"><button type="button" onClick={copyDossier}><Clipboard size={14}/>{command.copy as string}</button><a href={dossierHref} target="_blank" rel="noreferrer"><MessageCircle size={14}/>{command.share as string}</a></div></div></div>
+          <div className="dossier-grid"><div><span>{command.dimensions as string}</span><b>{modelWidth} × {modelDepth} {command.unit as string}</b></div><div><span>{command.material as string}</span><b>{material || materialStudies[activeStudy].title}</b></div><div><span>{command.finish as string}</span><b>{(command.finishes as string[])[legFinish]}</b></div><div><span>{command.comfort as string}</span><b>{comfort} / 10</b></div><div><span>{command.contactDossier as string}</span><b>{service}</b></div><div><span>{command.layers as string}</span><b>{exploded ? command.exploded as string : command.assembled as string}</b></div></div>
         </section>
 
         <section className="studio-workbench">

@@ -79,6 +79,12 @@ The landing page now visibly carries all six contemporary furniture pieces in a 
 
 The raw workshop photography has been replaced in the public atelier story by two professional editorial scenes: a focused upholstery team at the sewing station and a measured material-preparation scene. They retain the truthful compact workshop scale while presenting it as ordered, clean and sophisticated. The Design Studio now opens with a dark Rasyne Design Command Deck and a true orbitable 3D sofa, where dimensions, comfort, material, leg finish and exploded/assembly state drive the visual study and flow into the order brief.
 
+The Studio now adds a Material Observatory directly after the 3D command deck. Its four tactile surfaces—ivory bouclé, cognac leather, terracotta velvet and mineral plaster—have distinct visual grammars and feed the material selection. The adjacent live dossier turns current dimensions, material, leg finish, comfort, service and construction state into a compact atelier packet that can be copied or shared on WhatsApp before an order is sent.
+
+The Observatory now extends into a Finish Compass: walnut, brushed brass and espresso are selectable in the same dark material field, feed the 3D leg finish, and are reflected in the dossier. The full-screen Studio check confirmed that surface cards, finish cards, the command deck and the dossier read as one deliberate sequence rather than separate configuration widgets.
+
+The landing page now carries a dark, four-act renewal record—Read, Recompose, Dress, Return—between the practical process and contact sections. It makes the restoration method legible without inventing testimonials, while a fixed contextual WhatsApp rail gives visitors an immediate route into a real atelier conversation from any point on the page.
+
 ## Style Decisions
 
 - The hero must prioritize the generated living-room image with dark espresso text on the light negative-space side.

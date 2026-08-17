@@ -1,0 +1,11 @@
+.finish-compass{position:relative;margin-top:1rem;padding-top:.85rem;border-top:1px solid rgba(235,190,143,.24)}
+.finish-compass>div{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;margin-top:.55rem}
+.finish-study{min-height:5.4rem;border:1px solid rgba(249,237,224,.22);background:rgba(18,10,8,.56);color:#fff4e8;text-align:left;padding:.55rem;cursor:pointer;transition:transform .18s var(--ease-out,ease-out),border-color .18s ease}
+.finish-study:hover,.finish-study.active{border-color:#e9b77c;transform:translateY(-2px)}
+.finish-swatch{display:block;height:.62rem;margin-bottom:.48rem}
+.finish-swatch.finish-0{background:repeating-linear-gradient(90deg,#402617 0 9px,#745035 10px 12px)}
+.finish-swatch.finish-1{background:linear-gradient(90deg,#735027,#e8c681,#9a713c)}
+.finish-swatch.finish-2{background:linear-gradient(90deg,#0e0908,#3a2620,#100b0a)}
+.finish-study b{display:block;font-size:.68rem}
+.finish-study small{display:block;margin-top:.2rem;color:#cbb19a;font-size:.49rem;line-height:1.4}
+@media(max-width:760px){.finish-compass>div{grid-template-columns:1fr}}
