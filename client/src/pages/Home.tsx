@@ -19,6 +19,7 @@ import {
 import { FormEvent, useEffect, useState } from "react";
 import { toast } from "sonner";
 import "./home-augmentation.css";
+import "./home-film.css";
 
 const markUrl = "/manus-storage/rasyine-deco-mark_ae9209a1.png";
 const heroUrl = "/manus-storage/rasyine-deco-hero_274855ee.jpg";
@@ -33,10 +34,11 @@ const labDiningUrl = "/manus-storage/rasyne-gallery-dining-set_ed70bd1e.jpg";
 const labChaiseUrl = "/manus-storage/rasyne-gallery-cloud-chaise_45f2e198.jpg";
 const labAutoLoungeUrl = "/manus-storage/rasyne-gallery-auto-lounge_7ffd5029.jpg";
 const labStoolUrl = "/manus-storage/rasyne-gallery-sculptural-stool_0db1f02b.jpg";
+const refurbishmentTeamFilmUrl = "/manus-storage/rasyne-refurbishment-team-film_17dcbbf4.mp4";
 
 const copy = {
   en: {
-    nav: ["Services", "Furniture Lab", "Studio", "Atelier", "Contact"],
+    nav: ["Services", "Furniture Lab", "Worlds", "Studio", "Atelier", "Contact"],
     studio: "Design studio",
     eyebrow: "Sayada, Tunisia · Since the first stitch",
     heroLead: "Furniture with a past. A future shaped around you.",
@@ -82,12 +84,14 @@ const copy = {
     renewalTitle: "A piece changes state. It keeps its story.",
     renewalText: "Each refurbishment starts with close observation, then moves through proportion, material, stitch and return. The rhythm is patient because the result has to live with you.",
     renewalStages: [["Read", "Inspect the structure, memory and real use of the piece."], ["Recompose", "Adjust comfort, proportion and construction before the first cut."], ["Dress", "Choose material, finish and stitch language with intention."], ["Return", "Reveal a piece ready for its next room and next chapter."]],
+    filmTitle: "The atelier, in motion.",
+    filmText: "A small team working through the hands-on sequence that brings a piece back to life.",
     chatSignal: "Atelier signal",
     chatNow: "Share your piece with Rasyne",
     footer: "Furniture restoration · upholstery · custom interiors",
   },
   fr: {
-    nav: ["Services", "Laboratoire", "Studio", "Atelier", "Contact"],
+    nav: ["Services", "Laboratoire", "Worlds", "Studio", "Atelier", "Contact"],
     studio: "Studio de design",
     eyebrow: "Sayada, Tunisie · Depuis le premier point",
     heroLead: "Un mobilier qui a vécu. Une nouvelle vie façonnée pour vous.",
@@ -133,12 +137,14 @@ const copy = {
     renewalTitle: "Une pièce change d’état. Elle garde son histoire.",
     renewalText: "Chaque rénovation commence par l’observation, puis passe par la proportion, la matière, le point et le retour. Le rythme est patient car la pièce doit vivre avec vous.",
     renewalStages: [["Lire", "Observer la structure, la mémoire et l’usage réel de la pièce."], ["Recomposer", "Ajuster le confort, la proportion et la construction avant la première coupe."], ["Habiller", "Choisir matière, finition et langage de couture avec intention."], ["Rendre", "Révéler une pièce prête pour son prochain intérieur et son prochain chapitre."]],
+    filmTitle: "L’atelier, en mouvement.",
+    filmText: "Une petite équipe déroule les gestes concrets qui redonnent vie à une pièce.",
     chatSignal: "Signal atelier",
     chatNow: "Partager votre pièce avec Rasyne",
     footer: "Restauration de mobilier · tapisserie · intérieurs sur mesure",
   },
   ar: {
-    nav: ["الخدمات", "مختبر الأثاث", "الاستوديو", "الورشة", "اتصل بنا"],
+    nav: ["الخدمات", "مختبر الأثاث", "Worlds", "الاستوديو", "الورشة", "اتصل بنا"],
     studio: "استوديو التصميم",
     eyebrow: "صيادة، تونس · من أول غرزة",
     heroLead: "أثاث يحمل ماضيه. ومستقبل نصمّمه حولك.",
@@ -184,6 +190,8 @@ const copy = {
     renewalTitle: "تتغير القطعة. لكنها تحتفظ بقصتها.",
     renewalText: "يبدأ كل تجديد بالملاحظة الدقيقة، ثم ينتقل عبر النسب والخامة والغرز والعودة. الإيقاع هادئ لأن القطعة يجب أن تعيش معك.",
     renewalStages: [["نقرأ", "نفحص البنية والذاكرة والاستخدام الحقيقي للقطعة."], ["نعيد التكوين", "نضبط الراحة والنسب والبنية قبل أول قصّة."], ["نكسو", "نختار الخامة واللمسة ولغة الغرز بعناية."], ["نعيدها", "نكشف عن قطعة جاهزة لغرفتها وفصلها التالي."]],
+    filmTitle: "الورشة في حركة.",
+    filmText: "فريق صغير ينجز الخطوات الحرفية التي تعيد الحياة إلى القطعة.",
     chatSignal: "إشارة الورشة",
     chatNow: "شارك قطعتك مع Rasyne",
     footer: "ترميم الأثاث · تنجيد · تصميم داخلي حسب الطلب",
@@ -220,7 +228,7 @@ export default function Home() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const navTargets = ["#services", "/lab", "/studio", "#atelier", "#contact"];
+  const navTargets = ["#services", "/lab", "/worlds", "/studio", "#atelier", "#contact"];
   const goTo = (target: string) => {
     setMenuOpen(false);
     if (target.startsWith("#")) document.querySelector(target)?.scrollIntoView({ behavior: "smooth" });
@@ -371,6 +379,7 @@ export default function Home() {
         <section className="renewal-sequence">
           <div className="renewal-intro"><div><p className="eyebrow light"><span></span>{t.renewalLabel as string}</p><h2>{t.renewalTitle as string}</h2></div><p>{t.renewalText as string}</p></div>
           <div className="renewal-stages">{(t.renewalStages as string[][]).map(([title, text], index) => <article className="renewal-stage" key={title}><span>0{index + 1}</span><div><h3>{title}</h3><p>{text}</p></div></article>)}</div>
+          <figure className="renewal-film"><video src={refurbishmentTeamFilmUrl} controls muted loop playsInline preload="metadata" aria-label={t.filmTitle as string}></video><figcaption className="renewal-film-caption"><small>RASYNE / FILM 01</small><strong>{t.filmTitle as string}</strong><p>{t.filmText as string}</p><i></i></figcaption></figure>
         </section>
 
         <section id="contact" className="contact-section">
