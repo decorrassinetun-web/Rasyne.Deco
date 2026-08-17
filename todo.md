@@ -26,7 +26,7 @@
 - [x] Localiser les libellés, options et microcopies encore en anglais dans les parcours Studio et Atelier exposés.
 - [x] Vérifier et corriger les flèches, chevrons, alignements et ordre visuel dans Home, Studio et Atelier en mode RTL.
 - [x] Créer une galerie visuelle plus audacieuse montrant une collection riche de mobilier contemporain.
-- [ ] Produire et intégrer un film cinématique montrant une équipe de l’atelier en mission de conception et de restauration.
+- [x] Produire et intégrer un film cinématique montrant une équipe de l’atelier en mission de conception et de restauration.
 - [ ] Mettre en scène dans le film les étapes concrètes de rénovation : inspection, démontage, choix des matières, couture, garnissage et révélation finale.
 - [x] Renforcer le récit de marque afin que le site se lise comme une maison de design contemporaine, sans masquer l’échelle artisanale de l’atelier.
 - [ ] Ajouter des appels à conversation vers WhatsApp, Instagram et Facebook depuis la landing page et le Design Studio.
@@ -66,3 +66,9 @@
 - [x] Revalider visuellement l’Observatory une fois la sélection complète matières + finitions intégrée.
 - [x] Ajouter une conversation WhatsApp contextuelle entre Home, Furniture Lab, Rasyne Worlds et Design Studio.
 - [x] Renforcer le récit de transformation de la landing page par une séquence éditoriale immersive sans fabriquer d’avis clients.
+- [ ] Réintégrer un film de rénovation couvrant explicitement inspection, démontage, choix des matières, couture, garnissage et révélation finale lorsque le quota vidéo le permettra.
+- [x] Reconstruire Rasyne Worlds : une expérience Babylon.js 3D avec cinq meubles, placement par slots et progression Starter Home → Skyline Suite.
+- [x] Ajouter le pont Rasyne Worlds vers le Design Studio et WhatsApp avec transmission du brief d’aménagement.
+- [x] Rendre la progression Starter Home → Skyline Suite réellement visible dans Rasyne Worlds par un changement d’environnement et de vue.
+- [x] Ajouter une vérification ciblée confirmant que le seuil Skyline modifie réellement l’état de scène présenté au visiteur.
+- [x] Ajouter une sauvegarde locale, avec restauration et suppression, des dossiers de projet dans le Design Studio.

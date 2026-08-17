@@ -1,5 +1,6 @@
 import { Locale, localeNames, useLocale } from "@/lib/locale";
 import { getWhatsAppUrl } from "@/lib/contact";
+import { createStudioDraft, persistStudioDrafts, readStudioDrafts, type SavedStudioDraft, type StudioReference } from "@/lib/studioDrafts";
 import { trpc } from "@/lib/trpc";
 import FurnitureCommandScene from "@/components/FurnitureCommandScene";
 import "./command-deck.css";
@@ -8,6 +9,7 @@ import "./studio-finish-compass.css";
 import {
   ArrowLeft,
   ArrowUpRight,
+  Bookmark,
   Check,
   ImagePlus,
   LoaderCircle,
@@ -25,6 +27,7 @@ import {
   Ruler,
   SlidersHorizontal,
   Sparkles,
+  Trash2,
   Upload,
   WandSparkles,
   X,
@@ -33,6 +36,12 @@ import { FormEvent, useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 
 const markUrl = "/manus-storage/rasyine-deco-mark_ae9209a1.png";
+
+const saveCopy = {
+  en: { save: "Save dossier", saved: "Dossier saved on this device", savedDesigns: "Saved studies", restore: "Restore", remove: "Remove", noSaved: "No saved studies yet.", saveError: "This browser could not save the dossier.", worldImported: "Rasyne Worlds composition imported." },
+  fr: { save: "Sauvegarder le dossier", saved: "Dossier enregistré sur cet appareil", savedDesigns: "Études sauvegardées", restore: "Restaurer", remove: "Retirer", noSaved: "Aucune étude sauvegardée.", saveError: "Ce navigateur ne peut pas sauvegarder le dossier.", worldImported: "Composition Rasyne Worlds importée." },
+  ar: { save: "احفظ الملف", saved: "تم حفظ الملف على هذا الجهاز", savedDesigns: "الدراسات المحفوظة", restore: "استعد", remove: "حذف", noSaved: "لا توجد دراسات محفوظة بعد.", saveError: "تعذر على المتصفح حفظ الملف.", worldImported: "تم استيراد تكوين Rasyne Worlds." },
+} satisfies Record<Locale, Record<string, string>>;
 
 const commandCopy = {
   en: { badge: "Rasyne Design Command Deck", title: "Give the idea real coordinates.", text: "A live spatial study for proportion, comfort, material and construction before the visual concept is generated.", stage: "Live spatial model", orbit: "Drag to orbit · scroll to zoom", exploded: "Exploded view", assembled: "Assembly view", structure: "Structural controls", width: "Overall width", depth: "Seat depth", comfort: "Comfort index", material: "Material system", finish: "Leg finish", layers: "Construction layers", layerItems: ["Silhouette", "Seat system", "Back volume", "Arms", "Leg geometry"], materials: ["Ivory bouclé", "Cognac leather", "Terracotta velvet"], finishes: ["Walnut", "Brushed brass", "Espresso"], unit: "cm", config: "Configuration payload", observatory: "Material Observatory", observeText: "Select a surface and let its behavior enter your study.", materialNotes: ["Dense weave · cloud-soft reflection", "Hand-finished grain · warm patina", "Directional pile · saturated depth", "Mineral surface · calm architectural ground"], dossier: "Live project dossier", dossierText: "A clean packet of the current study, ready for the atelier.", copy: "Copy dossier", share: "Send to atelier", dimensions: "Dimensions", contactDossier: "Project signal" },
@@ -75,7 +84,7 @@ const services = [
   ["carpeting", { en: "Carpet / covering", fr: "Tapis ou revêtement", ar: "سجاد أو كساء" }],
 ] as const;
 
-type UploadedAsset = { key: string; url: string; mimeType: string };
+type UploadedAsset = StudioReference;
 
 function readAsDataUrl(file: File) {
   return new Promise<string>((resolve, reject) => {
@@ -89,6 +98,7 @@ function readAsDataUrl(file: File) {
 export default function Studio() {
   const { locale, setLocale } = useLocale();
   const t = labels[locale];
+  const savedT = saveCopy[locale];
   const command = commandCopy[locale];
   const fileInput = useRef<HTMLInputElement>(null);
   const recorder = useRef<MediaRecorder | null>(null);
@@ -110,6 +120,7 @@ export default function Studio() {
   const [legFinish, setLegFinish] = useState(0);
   const [exploded, setExploded] = useState(false);
   const [activeStudy, setActiveStudy] = useState(0);
+  const [savedDrafts, setSavedDrafts] = useState<SavedStudioDraft[]>(readStudioDrafts);
 
   const upload = trpc.studio.upload.useMutation();
   const transcribe = trpc.studio.transcribe.useMutation();
@@ -150,7 +161,31 @@ export default function Studio() {
     if (briefFromLab) setBrief(briefFromLab);
     if (styleFromLab) setStyle(styleFromLab);
     if (materialFromLab) setMaterial(materialFromLab);
+    const worldBrief = window.sessionStorage.getItem("rasyne-worlds-brief");
+    if (!briefFromLab && worldBrief) {
+      setBrief(worldBrief);
+      window.sessionStorage.removeItem("rasyne-worlds-brief");
+      toast.success(savedT.worldImported);
+    }
   }, []);
+
+  const saveCurrentDraft = () => {
+    try {
+      const saved = createStudioDraft({ brief, service, style, material, modelWidth, modelDepth, comfort, sceneMaterial, legFinish, exploded, activeStudy, reference, conceptUrl });
+      const next = [saved, ...savedDrafts.filter((draft) => draft.brief !== saved.brief)].slice(0, 6);
+      persistStudioDrafts(next);
+      setSavedDrafts(next);
+      toast.success(savedT.saved);
+    } catch { toast.error(savedT.saveError); }
+  };
+
+  const restoreDraft = (draft: SavedStudioDraft) => {
+    setBrief(draft.brief); setService(draft.service as typeof service); setStyle(draft.style); setMaterial(draft.material); setModelWidth(draft.modelWidth); setModelDepth(draft.modelDepth); setComfort(draft.comfort); setSceneMaterial(draft.sceneMaterial); setLegFinish(draft.legFinish); setExploded(draft.exploded); setActiveStudy(draft.activeStudy); setReference(draft.reference); setPreviewUrl(draft.reference?.url ?? null); setConceptUrl(draft.conceptUrl); toast.success(savedT.restore);
+  };
+
+  const removeDraft = (id: string) => {
+    try { const next = savedDrafts.filter((draft) => draft.id !== id); persistStudioDrafts(next); setSavedDrafts(next); } catch { toast.error(savedT.saveError); }
+  };
 
   const uploadFile = async (file: File) => {
     const audio = file.type.startsWith("audio/");
@@ -296,8 +331,9 @@ export default function Studio() {
         </section>
 
         <section className="project-dossier">
-          <div className="dossier-head"><div><span className="studio-kicker"><Clipboard size={14}/>{command.dossier as string}</span><h3>{command.dossier as string}</h3></div><div><p>{command.dossierText as string}</p><div className="dossier-actions"><button type="button" onClick={copyDossier}><Clipboard size={14}/>{command.copy as string}</button><a href={dossierHref} target="_blank" rel="noreferrer"><MessageCircle size={14}/>{command.share as string}</a></div></div></div>
+          <div className="dossier-head"><div><span className="studio-kicker"><Clipboard size={14}/>{command.dossier as string}</span><h3>{command.dossier as string}</h3></div><div><p>{command.dossierText as string}</p><div className="dossier-actions"><button type="button" onClick={copyDossier}><Clipboard size={14}/>{command.copy as string}</button><button type="button" onClick={saveCurrentDraft}><Bookmark size={14}/>{savedT.save}</button><a href={dossierHref} target="_blank" rel="noreferrer"><MessageCircle size={14}/>{command.share as string}</a></div></div></div>
           <div className="dossier-grid"><div><span>{command.dimensions as string}</span><b>{modelWidth} × {modelDepth} {command.unit as string}</b></div><div><span>{command.material as string}</span><b>{material || materialStudies[activeStudy].title}</b></div><div><span>{command.finish as string}</span><b>{(command.finishes as string[])[legFinish]}</b></div><div><span>{command.comfort as string}</span><b>{comfort} / 10</b></div><div><span>{command.contactDossier as string}</span><b>{service}</b></div><div><span>{command.layers as string}</span><b>{exploded ? command.exploded as string : command.assembled as string}</b></div></div>
+          <div className="saved-studies"><div className="saved-studies-head"><span>{savedT.savedDesigns}</span><small>{savedDrafts.length}/6</small></div>{savedDrafts.length ? <div className="saved-study-list">{savedDrafts.map((draft) => <article key={draft.id}><div><b>{draft.brief || `${draft.modelWidth} × ${draft.modelDepth} ${command.unit as string}`}</b><small>{new Date(draft.createdAt).toLocaleDateString(locale === "ar" ? "ar-TN" : locale === "fr" ? "fr-TN" : "en-TN")}</small></div><div><button type="button" onClick={() => restoreDraft(draft)}>{savedT.restore}</button><button type="button" className="remove-draft" onClick={() => removeDraft(draft.id)} aria-label={savedT.remove}><Trash2 size={14}/></button></div></article>)}</div> : <p className="saved-empty">{savedT.noSaved}</p>}</div>
         </section>
 
         <section className="studio-workbench">

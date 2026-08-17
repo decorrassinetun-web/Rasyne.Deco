@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import FurnitureLab from "./pages/FurnitureLab";
 import OwnerOrders from "./pages/OwnerOrders";
 import Studio from "./pages/Studio";
+import Worlds from "./pages/Worlds";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -16,6 +17,7 @@ function Router() {
       <Route path={"/"} component={Home} />
       <Route path={"/studio"} component={Studio} />
       <Route path={"/lab"} component={FurnitureLab} />
+      <Route path={"/worlds"} component={Worlds} />
       <Route path={"/atelier"} component={OwnerOrders} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
