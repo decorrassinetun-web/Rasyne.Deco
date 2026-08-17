@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import { FormEvent, useEffect, useState } from "react";
 import { toast } from "sonner";
+import "./home-augmentation.css";
 
 const markUrl = "/manus-storage/rasyine-deco-mark_ae9209a1.png";
 const heroUrl = "/manus-storage/rasyine-deco-hero_274855ee.jpg";
@@ -77,6 +78,12 @@ const copy = {
     contactSuccess: "Thank you — your message has reached the atelier.",
     contactError: "Please add your name, a contact detail and a short message.",
     whatsapp: "Chat on WhatsApp",
+    renewalLabel: "The renewal record",
+    renewalTitle: "A piece changes state. It keeps its story.",
+    renewalText: "Each refurbishment starts with close observation, then moves through proportion, material, stitch and return. The rhythm is patient because the result has to live with you.",
+    renewalStages: [["Read", "Inspect the structure, memory and real use of the piece."], ["Recompose", "Adjust comfort, proportion and construction before the first cut."], ["Dress", "Choose material, finish and stitch language with intention."], ["Return", "Reveal a piece ready for its next room and next chapter."]],
+    chatSignal: "Atelier signal",
+    chatNow: "Share your piece with Rasyne",
     footer: "Furniture restoration · upholstery · custom interiors",
   },
   fr: {
@@ -122,6 +129,12 @@ const copy = {
     contactSuccess: "Merci — votre message est bien arrivé à l’atelier.",
     contactError: "Ajoutez votre nom, un moyen de contact et un court message.",
     whatsapp: "Échanger sur WhatsApp",
+    renewalLabel: "Le carnet de rénovation",
+    renewalTitle: "Une pièce change d’état. Elle garde son histoire.",
+    renewalText: "Chaque rénovation commence par l’observation, puis passe par la proportion, la matière, le point et le retour. Le rythme est patient car la pièce doit vivre avec vous.",
+    renewalStages: [["Lire", "Observer la structure, la mémoire et l’usage réel de la pièce."], ["Recomposer", "Ajuster le confort, la proportion et la construction avant la première coupe."], ["Habiller", "Choisir matière, finition et langage de couture avec intention."], ["Rendre", "Révéler une pièce prête pour son prochain intérieur et son prochain chapitre."]],
+    chatSignal: "Signal atelier",
+    chatNow: "Partager votre pièce avec Rasyne",
     footer: "Restauration de mobilier · tapisserie · intérieurs sur mesure",
   },
   ar: {
@@ -167,9 +180,15 @@ const copy = {
     contactSuccess: "شكراً — وصلت رسالتك إلى الورشة.",
     contactError: "أضف اسمك وطريقة تواصل ورسالة قصيرة.",
     whatsapp: "تحدث عبر واتساب",
+    renewalLabel: "سجل التجديد",
+    renewalTitle: "تتغير القطعة. لكنها تحتفظ بقصتها.",
+    renewalText: "يبدأ كل تجديد بالملاحظة الدقيقة، ثم ينتقل عبر النسب والخامة والغرز والعودة. الإيقاع هادئ لأن القطعة يجب أن تعيش معك.",
+    renewalStages: [["نقرأ", "نفحص البنية والذاكرة والاستخدام الحقيقي للقطعة."], ["نعيد التكوين", "نضبط الراحة والنسب والبنية قبل أول قصّة."], ["نكسو", "نختار الخامة واللمسة ولغة الغرز بعناية."], ["نعيدها", "نكشف عن قطعة جاهزة لغرفتها وفصلها التالي."]],
+    chatSignal: "إشارة الورشة",
+    chatNow: "شارك قطعتك مع Rasyne",
     footer: "ترميم الأثاث · تنجيد · تصميم داخلي حسب الطلب",
   },
-} satisfies Record<Locale, Record<string, string | string[]>>;
+} satisfies Record<Locale, Record<string, string | string[] | string[][]>>;
 
 const serviceCards = [
   { icon: Sofa, image: livingUrl, key: "salon", title: { en: "Salon & sofa", fr: "Salon & canapé", ar: "الصالون والكنبة" }, text: { en: "Reupholstery, repairs and new comfort for the centre of your home.", fr: "Réfection, réparation et nouveau confort pour le cœur de votre maison.", ar: "تنجيد وإصلاح وراحة جديدة لقلب منزلك." } },
@@ -349,6 +368,11 @@ export default function Home() {
           </div>
         </section>
 
+        <section className="renewal-sequence">
+          <div className="renewal-intro"><div><p className="eyebrow light"><span></span>{t.renewalLabel as string}</p><h2>{t.renewalTitle as string}</h2></div><p>{t.renewalText as string}</p></div>
+          <div className="renewal-stages">{(t.renewalStages as string[][]).map(([title, text], index) => <article className="renewal-stage" key={title}><span>0{index + 1}</span><div><h3>{title}</h3><p>{text}</p></div></article>)}</div>
+        </section>
+
         <section id="contact" className="contact-section">
           <div className="contact-copy"><p className="eyebrow light"><span></span>{t.contactLabel}</p><h2>{t.contactTitle}</h2><p>{t.contactText}</p><div className="contact-actions"><a href={getWhatsAppUrl("Hello Rasyne Deco, I would like to share a furniture idea with the workshop.")} target="_blank" rel="noreferrer" className="button-ivory"><MessageCircle size={18} />{t.whatsapp}</a><a className="contact-address" href="https://www.google.com/maps/search/?api=1&query=Avenue+Karaia+Sayada+5035+Monastir" target="_blank" rel="noreferrer"><MapPin size={18}/><span>{t.address}</span></a></div></div>
           <div className="contact-right"><div className="contact-map-panel"><span>RASYNE DECO</span><MapPin size={34} strokeWidth={1.3}/><a href="https://www.google.com/maps/search/?api=1&query=Avenue+Karaia+Sayada+5035+Monastir" target="_blank" rel="noreferrer">{t.viewMap} <ArrowUpRight size={16}/></a></div>{contactSent ? <div className="contact-form-success"><Check size={22}/><p>{t.contactSuccess}</p></div> : <form className="contact-form" onSubmit={sendContact}><h3>{t.contactFormTitle}</h3><label><span>{t.contactName}</span><input value={contactForm.fullName} onChange={event => setContactForm({ ...contactForm, fullName: event.target.value })} /></label><label><span>{t.contactDetail}</span><input value={contactForm.contact} onChange={event => setContactForm({ ...contactForm, contact: event.target.value })} /></label><label><span>{t.contactMessage}</span><textarea rows={3} value={contactForm.message} onChange={event => setContactForm({ ...contactForm, message: event.target.value })} /></label><button type="submit" disabled={contactMutation.isPending}>{contactMutation.isPending ? t.contactSending : <>{t.contactSend}<ArrowUpRight size={16}/></>}</button></form>}</div>
@@ -356,6 +380,7 @@ export default function Home() {
       </main>
 
       <footer className="site-footer"><a className="brand brand-footer" href="/"><BrandMark invert /><span className="brand-copy"><b>Rasyne</b><small>Deco</small></span></a><p>{t.footer}</p><span>© {new Date().getFullYear()}</span></footer>
+      <a className="atelier-chat-rail" href={getWhatsAppUrl(locale === "fr" ? "Bonjour Rasyne Deco, je souhaite partager une idée de mobilier avec l’atelier." : locale === "ar" ? "مرحباً Rasyne Deco، أود مشاركة فكرة أثاث مع الورشة." : "Hello Rasyne Deco, I would like to share a furniture idea with the atelier.")} target="_blank" rel="noreferrer"><MessageCircle size={17}/><span><small>{t.chatSignal as string}</small>{t.chatNow as string}</span></a>
     </div>
   );
 }
