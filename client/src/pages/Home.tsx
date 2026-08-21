@@ -19,6 +19,8 @@ import {
 } from "lucide-react";
 import { FormEvent, useEffect, useState } from "react";
 import { toast } from "sonner";
+
+// HMR integrity marker: this module is intentionally safe to reload independently.
 import "./home-augmentation.css";
 import "./home-film.css";
 

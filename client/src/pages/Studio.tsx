@@ -36,6 +36,8 @@ import {
 import { FormEvent, useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 
+// HMR integrity marker: this module is intentionally safe to reload independently.
+
 const markUrl = "/manus-storage/rasyine-deco-mark_ae9209a1.png";
 
 const saveCopy = {
