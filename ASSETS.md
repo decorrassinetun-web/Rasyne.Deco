@@ -5,4 +5,4 @@
 | Élément | Usage | URL persistante |
 |---|---|---|
 | Cible visuelle Rasyne Worlds | Référence de cadrage, palette, HUD et densité de scène | `/manus-storage/rasyne-worlds-visual-target_2697d8cc.png` |
-| Film équipe — restauration | Landing page, récit de transformation | `/manus-storage/rasyne-refurbishment-team-film_17dcbbf4.mp4` |
+| Film restauration complet | Landing page, récit de transformation : inspection, démontage, matière, couture, garnissage et révélation | `/manus-storage/rasyne-refurbishment-complete-film_7c6c15fc.mp4` |

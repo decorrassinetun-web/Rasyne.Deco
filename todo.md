@@ -27,7 +27,7 @@
 - [x] Vérifier et corriger les flèches, chevrons, alignements et ordre visuel dans Home, Studio et Atelier en mode RTL.
 - [x] Créer une galerie visuelle plus audacieuse montrant une collection riche de mobilier contemporain.
 - [x] Produire et intégrer un film cinématique montrant une équipe de l’atelier en mission de conception et de restauration.
-- [ ] Mettre en scène dans le film les étapes concrètes de rénovation : inspection, démontage, choix des matières, couture, garnissage et révélation finale.
+- [x] Mettre en scène dans le film les étapes concrètes de rénovation : inspection, démontage, choix des matières, couture, garnissage et révélation finale.
 - [x] Renforcer le récit de marque afin que le site se lise comme une maison de design contemporaine, sans masquer l’échelle artisanale de l’atelier.
 - [x] Ajouter des appels à conversation vers WhatsApp, Instagram et Facebook depuis la landing page et le Design Studio.
 - [x] Permettre au visiteur de transmettre un modèle, une image de référence ou son brief au propriétaire par un parcours de messagerie clair.
@@ -66,7 +66,7 @@
 - [x] Revalider visuellement l’Observatory une fois la sélection complète matières + finitions intégrée.
 - [x] Ajouter une conversation WhatsApp contextuelle entre Home, Furniture Lab, Rasyne Worlds et Design Studio.
 - [x] Renforcer le récit de transformation de la landing page par une séquence éditoriale immersive sans fabriquer d’avis clients.
-- [ ] Réintégrer un film de rénovation couvrant explicitement inspection, démontage, choix des matières, couture, garnissage et révélation finale lorsque le quota vidéo le permettra.
+- [x] Réintégrer un film de rénovation couvrant explicitement inspection, démontage, choix des matières, couture, garnissage et révélation finale lorsque le quota vidéo le permettra.
 - [x] Reconstruire Rasyne Worlds : une expérience Babylon.js 3D avec cinq meubles, placement par slots et progression Starter Home → Skyline Suite.
 - [x] Ajouter le pont Rasyne Worlds vers le Design Studio et WhatsApp avec transmission du brief d’aménagement.
 - [x] Rendre la progression Starter Home → Skyline Suite réellement visible dans Rasyne Worlds par un changement d’environnement et de vue.
@@ -78,3 +78,6 @@
 - [x] Corriger les erreurs de rechargement Vite signalées pour Home et Studio, puis rétablir le déploiement.
 - [x] Déclencher un rechargement HMR ciblé et confirmer l’absence de nouvelles erreurs pour Home et Studio.
 - [x] Publier la correction HMR avec succès et vérifier Home et Studio sur l’URL déployée.
+- [x] Analyser le film de rénovation complet publié afin de confirmer les six étapes demandées : inspection, démontage, matières, couture, garnissage et révélation finale.
+- [ ] Vérifier sur la landing page déployée que la vidéo utilisée est le film complet et non l’ancien montage.
+- [ ] Documenter la validation du remplacement dans le manifeste d’assets et la publier.

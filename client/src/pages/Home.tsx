@@ -37,7 +37,7 @@ const labDiningUrl = "/manus-storage/rasyne-gallery-dining-set_ed70bd1e.jpg";
 const labChaiseUrl = "/manus-storage/rasyne-gallery-cloud-chaise_45f2e198.jpg";
 const labAutoLoungeUrl = "/manus-storage/rasyne-gallery-auto-lounge_7ffd5029.jpg";
 const labStoolUrl = "/manus-storage/rasyne-gallery-sculptural-stool_0db1f02b.jpg";
-const refurbishmentTeamFilmUrl = "/manus-storage/rasyne-refurbishment-team-film_17dcbbf4.mp4";
+const refurbishmentCompleteFilmUrl = "/manus-storage/rasyne-refurbishment-complete-film_7c6c15fc.mp4";
 
 const socialCopy = {
   en: { follow: "Follow the atelier", instagram: "Instagram", facebook: "Facebook", instagramSoon: "Instagram profile coming soon.", facebookSoon: "Facebook page coming soon." },
@@ -94,7 +94,7 @@ const copy = {
     renewalText: "Each refurbishment starts with close observation, then moves through proportion, material, stitch and return. The rhythm is patient because the result has to live with you.",
     renewalStages: [["Read", "Inspect the structure, memory and real use of the piece."], ["Recompose", "Adjust comfort, proportion and construction before the first cut."], ["Dress", "Choose material, finish and stitch language with intention."], ["Return", "Reveal a piece ready for its next room and next chapter."]],
     filmTitle: "The atelier, in motion.",
-    filmText: "A small team working through the hands-on sequence that brings a piece back to life.",
+    filmText: "Inspection, careful dismantling, material selection, stitching, padding and the final reveal — carried by a small team.",
     chatSignal: "Atelier signal",
     chatNow: "Share your piece with Rasyne",
     footer: "Furniture restoration · upholstery · custom interiors",
@@ -147,7 +147,7 @@ const copy = {
     renewalText: "Chaque rénovation commence par l’observation, puis passe par la proportion, la matière, le point et le retour. Le rythme est patient car la pièce doit vivre avec vous.",
     renewalStages: [["Lire", "Observer la structure, la mémoire et l’usage réel de la pièce."], ["Recomposer", "Ajuster le confort, la proportion et la construction avant la première coupe."], ["Habiller", "Choisir matière, finition et langage de couture avec intention."], ["Rendre", "Révéler une pièce prête pour son prochain intérieur et son prochain chapitre."]],
     filmTitle: "L’atelier, en mouvement.",
-    filmText: "Une petite équipe déroule les gestes concrets qui redonnent vie à une pièce.",
+    filmText: "Inspection, démontage attentif, choix des matières, couture, garnissage et révélation finale — menés par une petite équipe.",
     chatSignal: "Signal atelier",
     chatNow: "Partager votre pièce avec Rasyne",
     footer: "Restauration de mobilier · tapisserie · intérieurs sur mesure",
@@ -200,7 +200,7 @@ const copy = {
     renewalText: "يبدأ كل تجديد بالملاحظة الدقيقة، ثم ينتقل عبر النسب والخامة والغرز والعودة. الإيقاع هادئ لأن القطعة يجب أن تعيش معك.",
     renewalStages: [["نقرأ", "نفحص البنية والذاكرة والاستخدام الحقيقي للقطعة."], ["نعيد التكوين", "نضبط الراحة والنسب والبنية قبل أول قصّة."], ["نكسو", "نختار الخامة واللمسة ولغة الغرز بعناية."], ["نعيدها", "نكشف عن قطعة جاهزة لغرفتها وفصلها التالي."]],
     filmTitle: "الورشة في حركة.",
-    filmText: "فريق صغير ينجز الخطوات الحرفية التي تعيد الحياة إلى القطعة.",
+    filmText: "فحص دقيق، تفكيك متأنٍ، اختيار الخامات، خياطة، حشو وكشف نهائي — تنجزها مجموعة صغيرة من الحرفيين.",
     chatSignal: "إشارة الورشة",
     chatNow: "شارك قطعتك مع Rasyne",
     footer: "ترميم الأثاث · تنجيد · تصميم داخلي حسب الطلب",
@@ -395,7 +395,7 @@ export default function Home() {
         <section className="renewal-sequence">
           <div className="renewal-intro"><div><p className="eyebrow light"><span></span>{t.renewalLabel as string}</p><h2>{t.renewalTitle as string}</h2></div><p>{t.renewalText as string}</p></div>
           <div className="renewal-stages">{(t.renewalStages as string[][]).map(([title, text], index) => <article className="renewal-stage" key={title}><span>0{index + 1}</span><div><h3>{title}</h3><p>{text}</p></div></article>)}</div>
-          <figure className="renewal-film"><video src={refurbishmentTeamFilmUrl} controls muted loop playsInline preload="metadata" aria-label={t.filmTitle as string}></video><figcaption className="renewal-film-caption"><small>RASYNE / FILM 01</small><strong>{t.filmTitle as string}</strong><p>{t.filmText as string}</p><i></i></figcaption></figure>
+          <figure className="renewal-film"><video src={refurbishmentCompleteFilmUrl} controls muted loop playsInline preload="metadata" aria-label={t.filmTitle as string}></video><figcaption className="renewal-film-caption"><small>RASYNE / FILM 01</small><strong>{t.filmTitle as string}</strong><p>{t.filmText as string}</p><i></i></figcaption></figure>
         </section>
 
         <section id="contact" className="contact-section">
