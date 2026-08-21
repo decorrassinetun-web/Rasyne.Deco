@@ -1,5 +1,5 @@
 import { Locale, localeNames, useLocale } from "@/lib/locale";
-import { getWhatsAppUrl } from "@/lib/contact";
+import { atelierChannels, getWhatsAppUrl } from "@/lib/contact";
 import { createStudioDraft, persistStudioDrafts, readStudioDrafts, type SavedStudioDraft, type StudioReference } from "@/lib/studioDrafts";
 import { trpc } from "@/lib/trpc";
 import FurnitureCommandScene from "@/components/FurnitureCommandScene";
@@ -9,6 +9,7 @@ import "./studio-finish-compass.css";
 import {
   ArrowLeft,
   ArrowUpRight,
+  AtSign,
   Bookmark,
   Check,
   ImagePlus,
@@ -41,6 +42,12 @@ const saveCopy = {
   en: { save: "Save dossier", saved: "Dossier saved on this device", savedDesigns: "Saved studies", restore: "Restore", remove: "Remove", noSaved: "No saved studies yet.", saveError: "This browser could not save the dossier.", worldImported: "Rasyne Worlds composition imported." },
   fr: { save: "Sauvegarder le dossier", saved: "Dossier enregistré sur cet appareil", savedDesigns: "Études sauvegardées", restore: "Restaurer", remove: "Retirer", noSaved: "Aucune étude sauvegardée.", saveError: "Ce navigateur ne peut pas sauvegarder le dossier.", worldImported: "Composition Rasyne Worlds importée." },
   ar: { save: "احفظ الملف", saved: "تم حفظ الملف على هذا الجهاز", savedDesigns: "الدراسات المحفوظة", restore: "استعد", remove: "حذف", noSaved: "لا توجد دراسات محفوظة بعد.", saveError: "تعذر على المتصفح حفظ الملف.", worldImported: "تم استيراد تكوين Rasyne Worlds." },
+} satisfies Record<Locale, Record<string, string>>;
+
+const socialSignalCopy = {
+  en: { title: "Follow the atelier", instagram: "Instagram", facebook: "Facebook", instagramSoon: "Instagram profile coming soon.", facebookSoon: "Facebook page coming soon." },
+  fr: { title: "Suivre l’atelier", instagram: "Instagram", facebook: "Facebook", instagramSoon: "Profil Instagram bientôt disponible.", facebookSoon: "Page Facebook bientôt disponible." },
+  ar: { title: "تابع الورشة", instagram: "إنستغرام", facebook: "فيسبوك", instagramSoon: "حساب إنستغرام قريباً.", facebookSoon: "صفحة فيسبوك قريباً." },
 } satisfies Record<Locale, Record<string, string>>;
 
 const commandCopy = {
@@ -99,6 +106,7 @@ export default function Studio() {
   const { locale, setLocale } = useLocale();
   const t = labels[locale];
   const savedT = saveCopy[locale];
+  const socialT = socialSignalCopy[locale];
   const command = commandCopy[locale];
   const fileInput = useRef<HTMLInputElement>(null);
   const recorder = useRef<MediaRecorder | null>(null);
@@ -290,6 +298,11 @@ export default function Studio() {
       toast.error(error instanceof Error ? error.message : t.orderError);
     }
   };
+  const openSocial = (network: "instagram" | "facebook") => {
+    const url = network === "instagram" ? atelierChannels.instagramUrl : atelierChannels.facebookUrl;
+    if (url) { window.open(url, "_blank", "noopener,noreferrer"); return; }
+    toast.message(network === "instagram" ? socialT.instagramSoon : socialT.facebookSoon);
+  };
   const shareOrderHref = getWhatsAppUrl(`Hello Rasyne Deco, here is my design brief:\n${enrichedBrief}\n\nReference image: ${reference?.url ?? "not attached"}\nConcept image: ${conceptUrl ?? "not generated"}`);
 
   return (
@@ -365,7 +378,7 @@ export default function Studio() {
           </div>
         </section>
 
-        <section className="order-panel"><div className="order-intro"><span className="studio-kicker"><Send size={14}/>{t.orderBadge}</span><h2>{t.orderTitle}</h2><p>{t.orderText}</p></div>{orderSent ? <div className="order-success"><span><Check size={25}/></span><div><h3>{t.success}</h3><a href={shareOrderHref} target="_blank" rel="noreferrer" className="order-share"><MessageCircle size={16}/>{t.shareWhatsApp}</a></div></div> : <form onSubmit={submitOrder} className="order-form"><label><span>{t.name}</span><input value={customer.fullName} onChange={event => setCustomer({ ...customer, fullName: event.target.value })} required /></label><label><span>{t.phone}</span><input value={customer.phone} onChange={event => setCustomer({ ...customer, phone: event.target.value })} required inputMode="tel" /></label><label><span>{t.email}</span><input value={customer.email} onChange={event => setCustomer({ ...customer, email: event.target.value })} type="email" /></label><label><span>{t.contact}</span><select value={customer.preferredContact} onChange={event => setCustomer({ ...customer, preferredContact: event.target.value as "phone" | "whatsapp" | "email" })}><option value="whatsapp">{t.contactWhatsApp}</option><option value="phone">{t.contactPhone}</option><option value="email">{t.contactEmail}</option></select></label><button className="order-submit" type="submit" disabled={createOrder.isPending}>{createOrder.isPending ? t.sending : <>{t.submit}<ArrowUpRight size={17}/></>}</button></form>}</section>
+        <section className="order-panel"><div className="order-intro"><span className="studio-kicker"><Send size={14}/>{t.orderBadge}</span><h2>{t.orderTitle}</h2><p>{t.orderText}</p><div className="studio-social-signals"><small>{socialT.title}</small><div><button type="button" onClick={() => openSocial("instagram")}><AtSign size={14}/>{socialT.instagram}</button><button type="button" onClick={() => openSocial("facebook")}><b>f</b>{socialT.facebook}</button></div></div></div>{orderSent ? <div className="order-success"><span><Check size={25}/></span><div><h3>{t.success}</h3><a href={shareOrderHref} target="_blank" rel="noreferrer" className="order-share"><MessageCircle size={16}/>{t.shareWhatsApp}</a></div></div> : <form onSubmit={submitOrder} className="order-form"><label><span>{t.name}</span><input value={customer.fullName} onChange={event => setCustomer({ ...customer, fullName: event.target.value })} required /></label><label><span>{t.phone}</span><input value={customer.phone} onChange={event => setCustomer({ ...customer, phone: event.target.value })} required inputMode="tel" /></label><label><span>{t.email}</span><input value={customer.email} onChange={event => setCustomer({ ...customer, email: event.target.value })} type="email" /></label><label><span>{t.contact}</span><select value={customer.preferredContact} onChange={event => setCustomer({ ...customer, preferredContact: event.target.value as "phone" | "whatsapp" | "email" })}><option value="whatsapp">{t.contactWhatsApp}</option><option value="phone">{t.contactPhone}</option><option value="email">{t.contactEmail}</option></select></label><button className="order-submit" type="submit" disabled={createOrder.isPending}>{createOrder.isPending ? t.sending : <>{t.submit}<ArrowUpRight size={17}/></>}</button></form>}</section>
       </main>
     </div>
   );

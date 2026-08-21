@@ -1,9 +1,10 @@
 import { Locale, localeNames, useLocale } from "@/lib/locale";
-import { getWhatsAppUrl } from "@/lib/contact";
+import { atelierChannels, getWhatsAppUrl } from "@/lib/contact";
 import { trpc } from "@/lib/trpc";
 import {
   ArrowDownRight,
   ArrowUpRight,
+  AtSign,
   CarFront,
   Check,
   ChevronRight,
@@ -35,6 +36,12 @@ const labChaiseUrl = "/manus-storage/rasyne-gallery-cloud-chaise_45f2e198.jpg";
 const labAutoLoungeUrl = "/manus-storage/rasyne-gallery-auto-lounge_7ffd5029.jpg";
 const labStoolUrl = "/manus-storage/rasyne-gallery-sculptural-stool_0db1f02b.jpg";
 const refurbishmentTeamFilmUrl = "/manus-storage/rasyne-refurbishment-team-film_17dcbbf4.mp4";
+
+const socialCopy = {
+  en: { follow: "Follow the atelier", instagram: "Instagram", facebook: "Facebook", instagramSoon: "Instagram profile coming soon.", facebookSoon: "Facebook page coming soon." },
+  fr: { follow: "Suivre l’atelier", instagram: "Instagram", facebook: "Facebook", instagramSoon: "Profil Instagram bientôt disponible.", facebookSoon: "Page Facebook bientôt disponible." },
+  ar: { follow: "تابع الورشة", instagram: "إنستغرام", facebook: "فيسبوك", instagramSoon: "حساب إنستغرام قريباً.", facebookSoon: "صفحة فيسبوك قريباً." },
+} satisfies Record<Locale, Record<string, string>>;
 
 const copy = {
   en: {
@@ -215,6 +222,7 @@ function BrandMark({ invert = false }: { invert?: boolean }) {
 export default function Home() {
   const { locale, setLocale } = useLocale();
   const t = copy[locale];
+  const socials = socialCopy[locale];
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [contactForm, setContactForm] = useState({ fullName: "", contact: "", message: "" });
@@ -248,6 +256,12 @@ export default function Home() {
     } catch (error) {
       toast.error(error instanceof Error ? error.message : t.contactError);
     }
+  };
+
+  const openSocial = (network: "instagram" | "facebook") => {
+    const url = network === "instagram" ? atelierChannels.instagramUrl : atelierChannels.facebookUrl;
+    if (url) { window.open(url, "_blank", "noopener,noreferrer"); return; }
+    toast.message(network === "instagram" ? socials.instagramSoon : socials.facebookSoon);
   };
 
   return (
@@ -383,7 +397,7 @@ export default function Home() {
         </section>
 
         <section id="contact" className="contact-section">
-          <div className="contact-copy"><p className="eyebrow light"><span></span>{t.contactLabel}</p><h2>{t.contactTitle}</h2><p>{t.contactText}</p><div className="contact-actions"><a href={getWhatsAppUrl("Hello Rasyne Deco, I would like to share a furniture idea with the workshop.")} target="_blank" rel="noreferrer" className="button-ivory"><MessageCircle size={18} />{t.whatsapp}</a><a className="contact-address" href="https://www.google.com/maps/search/?api=1&query=Avenue+Karaia+Sayada+5035+Monastir" target="_blank" rel="noreferrer"><MapPin size={18}/><span>{t.address}</span></a></div></div>
+          <div className="contact-copy"><p className="eyebrow light"><span></span>{t.contactLabel}</p><h2>{t.contactTitle}</h2><p>{t.contactText}</p><div className="contact-actions"><a href={getWhatsAppUrl("Hello Rasyne Deco, I would like to share a furniture idea with the workshop.")} target="_blank" rel="noreferrer" className="button-ivory"><MessageCircle size={18} />{t.whatsapp}</a><a className="contact-address" href="https://www.google.com/maps/search/?api=1&query=Avenue+Karaia+Sayada+5035+Monastir" target="_blank" rel="noreferrer"><MapPin size={18}/><span>{t.address}</span></a></div><div className="contact-socials"><small>{socials.follow}</small><div><button type="button" onClick={() => openSocial("instagram")}><AtSign size={15}/>{socials.instagram}</button><button type="button" onClick={() => openSocial("facebook")}><b>f</b>{socials.facebook}</button></div></div></div>
           <div className="contact-right"><div className="contact-map-panel"><span>RASYNE DECO</span><MapPin size={34} strokeWidth={1.3}/><a href="https://www.google.com/maps/search/?api=1&query=Avenue+Karaia+Sayada+5035+Monastir" target="_blank" rel="noreferrer">{t.viewMap} <ArrowUpRight size={16}/></a></div>{contactSent ? <div className="contact-form-success"><Check size={22}/><p>{t.contactSuccess}</p></div> : <form className="contact-form" onSubmit={sendContact}><h3>{t.contactFormTitle}</h3><label><span>{t.contactName}</span><input value={contactForm.fullName} onChange={event => setContactForm({ ...contactForm, fullName: event.target.value })} /></label><label><span>{t.contactDetail}</span><input value={contactForm.contact} onChange={event => setContactForm({ ...contactForm, contact: event.target.value })} /></label><label><span>{t.contactMessage}</span><textarea rows={3} value={contactForm.message} onChange={event => setContactForm({ ...contactForm, message: event.target.value })} /></label><button type="submit" disabled={contactMutation.isPending}>{contactMutation.isPending ? t.contactSending : <>{t.contactSend}<ArrowUpRight size={16}/></>}</button></form>}</div>
         </section>
       </main>

@@ -29,7 +29,7 @@
 - [x] Produire et intégrer un film cinématique montrant une équipe de l’atelier en mission de conception et de restauration.
 - [ ] Mettre en scène dans le film les étapes concrètes de rénovation : inspection, démontage, choix des matières, couture, garnissage et révélation finale.
 - [x] Renforcer le récit de marque afin que le site se lise comme une maison de design contemporaine, sans masquer l’échelle artisanale de l’atelier.
-- [ ] Ajouter des appels à conversation vers WhatsApp, Instagram et Facebook depuis la landing page et le Design Studio.
+- [x] Ajouter des appels à conversation vers WhatsApp, Instagram et Facebook depuis la landing page et le Design Studio.
 - [x] Permettre au visiteur de transmettre un modèle, une image de référence ou son brief au propriétaire par un parcours de messagerie clair.
 - [x] Centraliser les liens sociaux et le numéro WhatsApp pour faciliter leur mise à jour par l’atelier.
 - [ ] Brancher les liens définitifs Instagram et Facebook lorsque les profils auront été créés par l’atelier.
@@ -72,3 +72,6 @@
 - [x] Rendre la progression Starter Home → Skyline Suite réellement visible dans Rasyne Worlds par un changement d’environnement et de vue.
 - [x] Ajouter une vérification ciblée confirmant que le seuil Skyline modifie réellement l’état de scène présenté au visiteur.
 - [x] Ajouter une sauvegarde locale, avec restauration et suppression, des dossiers de projet dans le Design Studio.
+- [ ] Créer ou raccorder le dépôt GitHub Rasyne Deco cible pour la publication complète du code.
+- [ ] Pousser l’intégralité du code et des fichiers de conception versionnables vers la branche principale GitHub.
+- [ ] Vérifier le dépôt distant, son commit final et les fichiers essentiels après synchronisation.
