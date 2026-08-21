@@ -395,7 +395,7 @@ export default function Home() {
         <section className="renewal-sequence">
           <div className="renewal-intro"><div><p className="eyebrow light"><span></span>{t.renewalLabel as string}</p><h2>{t.renewalTitle as string}</h2></div><p>{t.renewalText as string}</p></div>
           <div className="renewal-stages">{(t.renewalStages as string[][]).map(([title, text], index) => <article className="renewal-stage" key={title}><span>0{index + 1}</span><div><h3>{title}</h3><p>{text}</p></div></article>)}</div>
-          <figure className="renewal-film"><video src={refurbishmentCompleteFilmUrl} controls muted loop playsInline preload="metadata" aria-label={t.filmTitle as string}></video><figcaption className="renewal-film-caption"><small>RASYNE / FILM 01</small><strong>{t.filmTitle as string}</strong><p>{t.filmText as string}</p><i></i></figcaption></figure>
+          <figure className="renewal-film"><video src={refurbishmentCompleteFilmUrl} controls muted loop playsInline preload="metadata" aria-label={t.filmTitle as string}></video><figcaption className="renewal-film-caption"><small>RASYNE / FILM 01 · COMPLETE RESTORATION</small><strong>{t.filmTitle as string}</strong><p>{t.filmText as string}</p><i></i></figcaption></figure>
         </section>
 
         <section id="contact" className="contact-section">
