@@ -56,10 +56,10 @@
 - [x] Préparer une sauvegarde GitHub du code complet et de la configuration versionnable du projet.
 - [x] Connecter le projet au dépôt GitHub choisi et y envoyer la version actuelle.
 - [x] Vérifier que le dépôt GitHub contient la version sauvegardée de Rasyne Deco.
-- [ ] Vérifier le contenu local disponible avant la synchronisation GitHub demandée.
-- [ ] Activer l’intégration GitHub dans le projet avant la synchronisation demandée.
-- [ ] Envoyer le code disponible de Rasyne Deco sur la branche principale du dépôt GitHub.
-- [ ] Vérifier le commit distant et les fichiers clés après cette synchronisation GitHub.
+- [x] Vérifier le contenu local disponible avant la synchronisation GitHub demandée.
+- [x] Activer l’intégration GitHub dans le projet avant la synchronisation demandée.
+- [x] Envoyer le code disponible de Rasyne Deco sur la branche principale du dépôt GitHub.
+- [x] Vérifier le commit distant et les fichiers clés après cette synchronisation GitHub.
 - [x] Construire un Material Observatory interactif pour explorer et sélectionner tissus, cuirs, textures et finitions.
 - [x] Ajouter un dossier de projet dynamique dans le Design Studio, utilisable avant commande et pour le partage WhatsApp.
 - [x] Étendre le Material Observatory à l’exploration et la sélection de finitions — noyer, laiton brossé et espresso — reliées au dossier et au brief.
@@ -72,6 +72,6 @@
 - [x] Rendre la progression Starter Home → Skyline Suite réellement visible dans Rasyne Worlds par un changement d’environnement et de vue.
 - [x] Ajouter une vérification ciblée confirmant que le seuil Skyline modifie réellement l’état de scène présenté au visiteur.
 - [x] Ajouter une sauvegarde locale, avec restauration et suppression, des dossiers de projet dans le Design Studio.
-- [ ] Créer ou raccorder le dépôt GitHub Rasyne Deco cible pour la publication complète du code.
-- [ ] Pousser l’intégralité du code et des fichiers de conception versionnables vers la branche principale GitHub.
-- [ ] Vérifier le dépôt distant, son commit final et les fichiers essentiels après synchronisation.
+- [x] Créer ou raccorder le dépôt GitHub Rasyne Deco cible pour la publication complète du code.
+- [x] Pousser l’intégralité du code et des fichiers de conception versionnables vers la branche principale GitHub.
+- [x] Vérifier le dépôt distant, son commit final et les fichiers essentiels après synchronisation.
