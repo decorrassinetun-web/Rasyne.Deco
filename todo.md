@@ -77,4 +77,4 @@
 - [x] Vérifier le dépôt distant, son commit final et les fichiers essentiels après synchronisation.
 - [x] Corriger les erreurs de rechargement Vite signalées pour Home et Studio, puis rétablir le déploiement.
 - [x] Déclencher un rechargement HMR ciblé et confirmer l’absence de nouvelles erreurs pour Home et Studio.
-- [ ] Publier la correction HMR avec succès et vérifier Home et Studio sur l’URL déployée.
+- [x] Publier la correction HMR avec succès et vérifier Home et Studio sur l’URL déployée.
