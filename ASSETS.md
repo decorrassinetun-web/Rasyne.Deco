@@ -6,3 +6,7 @@
 |---|---|---|
 | Cible visuelle Rasyne Worlds | Référence de cadrage, palette, HUD et densité de scène | `/manus-storage/rasyne-worlds-visual-target_2697d8cc.png` |
 | Film restauration complet | Landing page, récit de transformation : inspection, démontage, matière, couture, garnissage et révélation | `/manus-storage/rasyne-refurbishment-complete-film_7c6c15fc.mp4` |
+
+## Validation de publication
+
+Le 19 octobre 2026, la landing page déployée a été vérifiée avec le marqueur `COMPLETE RESTORATION` et le bundle public `index-DT1Ce1ga.js`. Le bundle référence `/manus-storage/rasyne-refurbishment-complete-film_7c6c15fc.mp4`, qui remplace l’ancien montage partiel et couvre les six étapes éditoriales : inspection, démontage, matières, couture, garnissage et révélation finale.

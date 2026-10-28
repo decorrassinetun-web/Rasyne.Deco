@@ -79,6 +79,6 @@
 - [x] Déclencher un rechargement HMR ciblé et confirmer l’absence de nouvelles erreurs pour Home et Studio.
 - [x] Publier la correction HMR avec succès et vérifier Home et Studio sur l’URL déployée.
 - [x] Analyser le film de rénovation complet publié afin de confirmer les six étapes demandées : inspection, démontage, matières, couture, garnissage et révélation finale.
-- [ ] Vérifier sur la landing page déployée que la vidéo utilisée est le film complet et non l’ancien montage.
-- [ ] Documenter la validation du remplacement dans le manifeste d’assets et la publier.
-- [ ] Déclencher un build de production frais et confirmer que le domaine public promeut le bundle contenant le film complet.
+- [x] Vérifier sur la landing page déployée que la vidéo utilisée est le film complet et non l’ancien montage.
+- [x] Documenter la validation du remplacement dans le manifeste d’assets et la publier.
+- [x] Déclencher un build de production frais et confirmer que le domaine public promeut le bundle contenant le film complet.
