@@ -1,16 +1,28 @@
-# Rasyne Brand PlayNbuild — Mega SaaS Product Prompt
+# BuildNdoanyting — Global Creation SaaS Product Prompt
 
 ## North star
 
-Build **Rasyne Brand PlayNbuild**, a playful, multilingual, AI-assisted creation platform that begins with furniture, interiors, restoration and craft, then grows into a universal workspace for imagining, prototyping and sharing almost any buildable idea.
+Build **BuildNdoanyting**, pronounced “Build N do anything,” where **N means And**: build **and** play, build **and** learn, build **and** collaborate, build **and** make. It is a playful, multilingual, AI-assisted creation platform that begins with furniture, interiors, restoration and craft, then grows into a universal workspace for imagining, prototyping and sharing almost any buildable idea.
 
 The product should feel like an atelier and a game at the same time: tactile enough for a craftsperson, structured enough for a professional designer, and inviting enough for a child or first-time creator. It must never pretend that every idea is instantly manufacturable. It should separate imagination, simulation, quotation and real-world production into honest stages.
+
+## Brand identity
+
+**Official name:** BuildNdoanyting
+
+**Name logic:** `Build` is the action, `N` is the connective word “And,” and `doanyting` expresses open-ended possibility in the founder’s distinctive spelling. The unusual spelling is intentional and should remain consistent across product, documentation and future domains.
+
+**Category:** Play-to-build creation SaaS.
+
+**Founding vertical:** Rasyne Deco, the first real-world atelier and proof environment for the platform.
+
+**Global idea:** people should be able to play with an idea, shape it with intelligence and move it toward a real build with trusted people.
 
 ## Brand promise
 
 > Play with an idea. Shape it with intelligence. Build it with people.
 
-Rasyne is the proof layer: a real workshop where materials, measurements, comfort, restoration and human judgment matter. Brand PlayNbuild expands that philosophy into a platform without erasing the atelier origin.
+Rasyne Deco is the proof layer: a real workshop where materials, measurements, comfort, restoration and human judgment matter. BuildNdoanyting expands that philosophy into a global platform without erasing the atelier origin.
 
 ## Product principles
 
@@ -119,7 +131,7 @@ Prefer typed contracts, small domain modules, deterministic state machines for p
 
 Stabilize the current Home, Furniture Lab, Studio, Worlds, trilingual UI, WhatsApp routing, local drafts, asset manifest and GitHub synchronization.
 
-### Phase 1 — PlayNbuild beta
+### Phase 1 — BuildNdoanyting beta
 
 Introduce project accounts, cloud-saved dossiers, version history, prompt-to-brief orchestration, shareable read-only links and a small set of curated creation worlds.
 
@@ -157,4 +169,4 @@ A world is ready only when it has:
 
 ## Master build prompt
 
-> Design and implement the next vertical of Rasyne Brand PlayNbuild as a high-end, trilingual, playful creation system. Preserve the Atelier Quiet Luxury language: warm ivory, espresso, burnt terracotta and brushed brass; editorial asymmetry; tactile material cues; concise sensory copy; and honest human-scale craft. Let users start with text, voice or an image, then play with a responsive 3D world, compare variations, inspect materials, adjust constraints and save a project dossier. Translate creative play into a structured brief that can be reviewed by a real atelier. Keep AI outputs visibly provisional until validated. Support English, French and Arabic with true RTL composition, keyboard accessibility, reduced motion and clear states for loading, uncertainty, privacy and human review. Extend the existing Rasyne Deco foundation instead of replacing it. Build in small typed modules, test pure rules, preserve provenance, avoid fake testimonials and never promise that an imagined object is automatically safe, affordable or manufacturable.
+> Design and implement the next vertical of **BuildNdoanyting** as a high-end, trilingual, playful creation system. Preserve the Atelier Quiet Luxury language for the founding Rasyne Deco world, while allowing future worlds to develop their own visual language. Let users start with text, voice or an image, then play with a responsive 3D world, compare variations, inspect materials, adjust constraints and save a project dossier. Translate creative play into a structured brief that can be reviewed by a real atelier or another trusted builder. Keep AI outputs visibly provisional until validated. Support English, French and Arabic with true RTL composition, keyboard accessibility, reduced motion and clear states for loading, uncertainty, privacy and human review. Extend the existing Rasyne Deco foundation instead of replacing it. Build in small typed modules, test pure rules, preserve provenance, avoid fake testimonials and never promise that an imagined object is automatically safe, affordable or manufacturable.
