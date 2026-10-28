@@ -1,9 +1,13 @@
 export const atelierChannels = {
   whatsappNumber: "21620580505",
+  whatsappSecondaryNumber: "21620579336",
   instagramUrl: null as string | null,
   facebookUrl: null as string | null,
 };
 
-export function getWhatsAppUrl(message: string) {
-  return `https://wa.me/${atelierChannels.whatsappNumber}?text=${encodeURIComponent(message)}`;
+export type WhatsAppNumber = "primary" | "secondary";
+
+export function getWhatsAppUrl(message: string, number: WhatsAppNumber = "primary") {
+  const phone = number === "secondary" ? atelierChannels.whatsappSecondaryNumber : atelierChannels.whatsappNumber;
+  return `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
 }

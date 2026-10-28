@@ -12,6 +12,8 @@ import {
   MapPin,
   Menu,
   MessageCircle,
+  PhoneCall,
+  Ruler,
   Scissors,
   Sofa,
   Sparkles,
@@ -213,6 +215,95 @@ const serviceCards = [
   { icon: CarFront, image: autoUrl, key: "auto", title: { en: "Automotive interior", fr: "Intérieur automobile", ar: "داخل السيارة" }, text: { en: "Refined seating, panels and detail work for the road ahead.", fr: "Assises, panneaux et finitions soignées pour la route.", ar: "مقاعد وألواح ولمسات دقيقة للطريق القادم." } },
 ];
 
+const briefEngineCopy = {
+  en: {
+    label: "Atelier brief engine",
+    title: "Give the piece a direction before it enters the room.",
+    text: "A precise three-step brief turns instinct into a conversation our atelier can act on.",
+    object: "The piece",
+    state: "Its current state",
+    mood: "The new atmosphere",
+    send: "Send this brief on WhatsApp",
+    route: "Choose your atelier line",
+    primary: "Main line",
+    secondary: "Secondary line",
+    primaryNote: "+216 20 580 505",
+    secondaryNote: "+216 20 579 336",
+    objects: ["A living-room sofa", "A chair or headboard", "A car interior"],
+    states: ["Restore its soul", "Rebuild the comfort", "Start from a new form"],
+    moods: ["Quiet luxury", "Warm Mediterranean", "A sharper future"],
+  },
+  fr: {
+    label: "Atelier brief engine",
+    title: "Donnez une direction à la pièce avant qu’elle n’entre dans la pièce.",
+    text: "En trois choix précis, votre intuition devient une conversation que l’atelier peut transformer.",
+    object: "La pièce",
+    state: "Son état actuel",
+    mood: "La nouvelle atmosphère",
+    send: "Envoyer ce brief sur WhatsApp",
+    route: "Choisissez votre ligne atelier",
+    primary: "Ligne principale",
+    secondary: "Ligne secondaire",
+    primaryNote: "+216 20 580 505",
+    secondaryNote: "+216 20 579 336",
+    objects: ["Un canapé de salon", "Un fauteuil ou une tête de lit", "Un intérieur automobile"],
+    states: ["Restaurer son âme", "Recomposer le confort", "Partir d’une nouvelle forme"],
+    moods: ["Luxe discret", "Méditerranée chaleureuse", "Un futur plus net"],
+  },
+  ar: {
+    label: "محرك موجز الورشة",
+    title: "امنح القطعة اتجاهها قبل أن تدخل إلى مساحتك.",
+    text: "ثلاثة اختيارات دقيقة تحول إحساسك إلى حوار تستطيع الورشة تنفيذه.",
+    object: "القطعة",
+    state: "حالَتها الحالية",
+    mood: "الأجواء الجديدة",
+    send: "أرسل الموجز عبر واتساب",
+    route: "اختر خط الورشة",
+    primary: "الخط الأساسي",
+    secondary: "الخط الثانوي",
+    primaryNote: "+216 20 580 505",
+    secondaryNote: "+216 20 579 336",
+    objects: ["كنبة صالون", "كرسي أو ظهر سرير", "مقصورة سيارة"],
+    states: ["نرمم روحها", "نعيد بناء راحتها", "نبدأ من شكل جديد"],
+    moods: ["فخامة هادئة", "دفء متوسطي", "مستقبل أكثر نقاءً"],
+  },
+} as const;
+
+function AtelierBriefEngine({ locale }: { locale: Locale }) {
+  const c = briefEngineCopy[locale];
+  const [objectIndex, setObjectIndex] = useState(0);
+  const [stateIndex, setStateIndex] = useState(0);
+  const [moodIndex, setMoodIndex] = useState(0);
+  const [line, setLine] = useState<"primary" | "secondary">("primary");
+  const options = [
+    { label: c.object, values: c.objects, icon: Sofa },
+    { label: c.state, values: c.states, icon: Ruler },
+    { label: c.mood, values: c.moods, icon: Sparkles },
+  ];
+  const indexes = [objectIndex, stateIndex, moodIndex];
+  const setIndexes = [setObjectIndex, setStateIndex, setMoodIndex];
+  const brief = locale === "ar"
+    ? `مرحباً Rasyne Deco، أود مناقشة ${c.objects[objectIndex]} — ${c.states[stateIndex]} — بأجواء ${c.moods[moodIndex]}.`
+    : locale === "fr"
+      ? `Bonjour Rasyne Deco, je souhaite discuter de ${c.objects[objectIndex]} — ${c.states[stateIndex]} — dans une atmosphère ${c.moods[moodIndex]}.`
+      : `Hello Rasyne Deco, I would like to discuss ${c.objects[objectIndex]} — ${c.states[stateIndex]} — with a ${c.moods[moodIndex]} atmosphere.`;
+
+  return (
+    <section className="brief-engine section-padding" id="brief-engine">
+      <div className="brief-engine-header"><div><p className="eyebrow dark"><span></span>{c.label}</p><h2>{c.title}</h2></div><p>{c.text}</p></div>
+      <div className="brief-engine-console">
+        <div className="brief-engine-steps">
+          {options.map((option, optionIndex) => {
+            const Icon = option.icon;
+            return <div className="brief-engine-step" key={option.label}><div className="brief-engine-step-title"><span>0{optionIndex + 1}</span><Icon size={16} /><b>{option.label}</b></div><div className="brief-engine-options">{option.values.map((value, valueIndex) => <button key={value} type="button" className={indexes[optionIndex] === valueIndex ? "active" : ""} onClick={() => setIndexes[optionIndex](valueIndex)}>{value}</button>)}</div></div>;
+          })}
+        </div>
+        <div className="brief-engine-output"><small>RASYNE / LIVE BRIEF</small><p>{brief}</p><div className="brief-engine-route"><span>{c.route}</span><div><button type="button" className={line === "primary" ? "active" : ""} onClick={() => setLine("primary")}><PhoneCall size={14}/><b>{c.primary}</b><small>{c.primaryNote}</small></button><button type="button" className={line === "secondary" ? "active" : ""} onClick={() => setLine("secondary")}><PhoneCall size={14}/><b>{c.secondary}</b><small>{c.secondaryNote}</small></button></div></div><a className="button-primary brief-engine-send" href={getWhatsAppUrl(brief, line)} target="_blank" rel="noreferrer"><MessageCircle size={16}/>{c.send}<ArrowUpRight size={16}/></a></div>
+      </div>
+    </section>
+  );
+}
+
 function BrandMark({ invert = false }: { invert?: boolean }) {
   return (
     <span className={`brand-mark ${invert ? "brand-mark-invert" : ""}`}>
@@ -364,6 +455,8 @@ export default function Home() {
           <div className="studio-orbit">RASYNE · CONCEPT · STUDIO · RASYNE · CONCEPT · STUDIO ·</div>
         </section>
 
+        <AtelierBriefEngine locale={locale} />
+
         <section id="atelier" className="atelier-section section-padding">
           <div className="atelier-top">
             <div>
@@ -399,7 +492,7 @@ export default function Home() {
         </section>
 
         <section id="contact" className="contact-section">
-          <div className="contact-copy"><p className="eyebrow light"><span></span>{t.contactLabel}</p><h2>{t.contactTitle}</h2><p>{t.contactText}</p><div className="contact-actions"><a href={getWhatsAppUrl("Hello Rasyne Deco, I would like to share a furniture idea with the workshop.")} target="_blank" rel="noreferrer" className="button-ivory"><MessageCircle size={18} />{t.whatsapp}</a><a className="contact-address" href="https://www.google.com/maps/search/?api=1&query=Avenue+Karaia+Sayada+5035+Monastir" target="_blank" rel="noreferrer"><MapPin size={18}/><span>{t.address}</span></a></div><div className="contact-socials"><small>{socials.follow}</small><div><button type="button" onClick={() => openSocial("instagram")}><AtSign size={15}/>{socials.instagram}</button><button type="button" onClick={() => openSocial("facebook")}><b>f</b>{socials.facebook}</button></div></div></div>
+          <div className="contact-copy"><p className="eyebrow light"><span></span>{t.contactLabel}</p><h2>{t.contactTitle}</h2><p>{t.contactText}</p><div className="contact-actions"><a href={getWhatsAppUrl("Hello Rasyne Deco, I would like to share a furniture idea with the workshop.")} target="_blank" rel="noreferrer" className="button-ivory"><MessageCircle size={18} />{t.whatsapp}</a><a className="contact-address" href="https://www.google.com/maps/search/?api=1&query=Avenue+Karaia+Sayada+5035+Monastir" target="_blank" rel="noreferrer"><MapPin size={18}/><span>{t.address}</span></a></div><div className="contact-lines"><a href={getWhatsAppUrl("Hello Rasyne Deco, I would like to contact the main atelier line.", "primary")} target="_blank" rel="noreferrer"><PhoneCall size={14}/><span><small>{briefEngineCopy[locale].primary}</small><b>{briefEngineCopy[locale].primaryNote}</b></span></a><a href={getWhatsAppUrl("Hello Rasyne Deco, I would like to contact the secondary atelier line.", "secondary")} target="_blank" rel="noreferrer"><PhoneCall size={14}/><span><small>{briefEngineCopy[locale].secondary}</small><b>{briefEngineCopy[locale].secondaryNote}</b></span></a></div><div className="contact-socials"><small>{socials.follow}</small><div><button type="button" onClick={() => openSocial("instagram")}><AtSign size={15}/>{socials.instagram}</button><button type="button" onClick={() => openSocial("facebook")}><b>f</b>{socials.facebook}</button></div></div></div>
           <div className="contact-right"><div className="contact-map-panel"><span>RASYNE DECO</span><MapPin size={34} strokeWidth={1.3}/><a href="https://www.google.com/maps/search/?api=1&query=Avenue+Karaia+Sayada+5035+Monastir" target="_blank" rel="noreferrer">{t.viewMap} <ArrowUpRight size={16}/></a></div>{contactSent ? <div className="contact-form-success"><Check size={22}/><p>{t.contactSuccess}</p></div> : <form className="contact-form" onSubmit={sendContact}><h3>{t.contactFormTitle}</h3><label><span>{t.contactName}</span><input value={contactForm.fullName} onChange={event => setContactForm({ ...contactForm, fullName: event.target.value })} /></label><label><span>{t.contactDetail}</span><input value={contactForm.contact} onChange={event => setContactForm({ ...contactForm, contact: event.target.value })} /></label><label><span>{t.contactMessage}</span><textarea rows={3} value={contactForm.message} onChange={event => setContactForm({ ...contactForm, message: event.target.value })} /></label><button type="submit" disabled={contactMutation.isPending}>{contactMutation.isPending ? t.contactSending : <>{t.contactSend}<ArrowUpRight size={16}/></>}</button></form>}</div>
         </section>
       </main>

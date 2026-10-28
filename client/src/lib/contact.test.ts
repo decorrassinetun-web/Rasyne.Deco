@@ -8,4 +8,10 @@ describe("atelier contact channels", () => {
     expect(url).toContain(`wa.me/${atelierChannels.whatsappNumber}`);
     expect(url).toContain("Hello%20Rasyne%20Deco");
   });
+
+  it("can route a brief to the secondary WhatsApp line", () => {
+    const url = getWhatsAppUrl("Bonjour Rasyne Deco", "secondary");
+
+    expect(url).toContain(`wa.me/${atelierChannels.whatsappSecondaryNumber}`);
+  });
 });
