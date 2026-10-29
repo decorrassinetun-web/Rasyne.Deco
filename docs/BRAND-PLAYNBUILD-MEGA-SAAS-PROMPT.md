@@ -68,6 +68,8 @@ A more rigorous design environment for turning play into a buildable direction:
 
 Game-like environments where users learn by composing systems and contribute to a growing world. Rasyne Worlds is the first world: place furniture, unlock rooms, understand proportion and carry the result into the Studio. Future worlds can include automotive interiors, hospitality spaces, retail displays, tiny homes, product objects, climate solutions, learning environments and educational maker challenges. Each world needs its own rules, contribution model and path from simulation to responsible production.
 
+The longer-term tower, tunnel, roads, mobility, shipyard, home-factory and human-augmentation worlds are mapped in [Worlds & Real Manufacturing Roadmap](./WORLDS-MANUFACTURING-ROADMAP.md). That roadmap treats AI, ASI, VR and augmented reality as enabling layers around the worlds, with engineering and human review between play and production.
+
 ### 4. Atelier Network
 
 A trust layer connecting projects to real people:
