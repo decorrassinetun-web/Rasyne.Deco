@@ -1,28 +1,34 @@
-# BuildNplayAnything — Global Creation SaaS Product Prompt
+# PlayNbuildAnything — Global Creation SaaS Product Prompt
 
 ## North star
 
-Build **BuildNplayAnything**: a playful, multilingual, AI-assisted creation platform where people learn, imagine, experiment and move toward building anything through play. It begins with furniture, interiors, restoration and craft, then grows into a universal workspace for imagining, prototyping and sharing almost any buildable idea.
+Build **PlayNbuildAnything**: a playful, multilingual, AI-assisted **World Augmenter** where people learn, imagine, experiment and contribute to the evolution of the world through games. Every game is a different doorway into creation; the best ideas can become structured projects, shared designs, real briefs and, after human and technical review, manufactured outcomes. It begins with furniture, interiors, restoration and craft, then grows into a universal workspace for imagining, prototyping and sharing almost any buildable idea.
 
 The product should feel like an atelier and a game at the same time: tactile enough for a craftsperson, structured enough for a professional designer, and inviting enough for a child or first-time creator. It must never pretend that every idea is instantly manufacturable. It should separate imagination, simulation, quotation and real-world production into honest stages.
 
 ## Brand identity
 
-**Official name:** BuildNplayAnything
+**Official name:** PlayNbuildAnything
 
 **Name logic:** `Build` is the outcome, `N` is the playful connector, and `playAnything` expresses the open-ended creative loop: play with an idea, learn from it, shape it and build it. The spelling is intentional and should remain consistent across product, documentation and future domains.
 
 **Category:** Play-to-build creation SaaS.
 
-**Founding vertical:** Rasyne Deco, the first real-world atelier and proof environment for the platform.
+**Founding vertical:** Rasyne Deco, one small but real piece of the PlayNbuildAnything cosmos: the first atelier and proof environment for a much larger creation universe.
 
 **Global idea:** people should be able to play with an idea, learn through experimentation, shape it with intelligence and move it toward a real build with trusted people.
+
+**World Augmenter thesis:** the world is not finished. Billions of people can contribute to its next layer through many kinds of play: designing spaces, solving problems, inventing objects, improving systems, teaching one another and remixing useful ideas. PlayNbuildAnything turns those contributions into navigable worlds, not an endless feed of content.
 
 ## Brand promise
 
 > Play with an idea. Shape it with intelligence. Build it with people.
 
-Rasyne Deco is the proof layer: a real workshop where materials, measurements, comfort, restoration and human judgment matter. BuildNplayAnything expands that philosophy into a global platform without erasing the atelier origin.
+Rasyne Deco is the first proof layer: a real workshop where materials, measurements, comfort, restoration and human judgment matter. It is one tiny piece of the cosmos, not the boundary of the vision. PlayNbuildAnything expands that philosophy into a global platform without erasing the atelier origin.
+
+## The play-to-world loop
+
+The platform is designed as a loop rather than a single generator. A person enters a game, explores a possibility, contributes a variation, learns from feedback, saves a project and invites other people to improve it. A selected project moves into a Build Deck, where constraints, materials, cost ranges, provenance and human review are made explicit. Only then can it move toward a quote, a maker, a workshop or a manufacturing partner. Play creates the possibility; review and craft create trust.
 
 ## Product principles
 
@@ -60,7 +66,7 @@ A more rigorous design environment for turning play into a buildable direction:
 
 ### 3. Worlds
 
-Game-like environments where users learn by composing systems. Rasyne Worlds is the first world: place furniture, unlock rooms, understand proportion and carry the result into the Studio. Future worlds can include automotive interiors, hospitality spaces, retail displays, tiny homes, product objects and educational maker challenges.
+Game-like environments where users learn by composing systems and contribute to a growing world. Rasyne Worlds is the first world: place furniture, unlock rooms, understand proportion and carry the result into the Studio. Future worlds can include automotive interiors, hospitality spaces, retail displays, tiny homes, product objects, climate solutions, learning environments and educational maker challenges. Each world needs its own rules, contribution model and path from simulation to responsible production.
 
 ### 4. Atelier Network
 
@@ -131,7 +137,7 @@ Prefer typed contracts, small domain modules, deterministic state machines for p
 
 Stabilize the current Home, Furniture Lab, Studio, Worlds, trilingual UI, WhatsApp routing, local drafts, asset manifest and GitHub synchronization.
 
-### Phase 1 — BuildNplayAnything beta
+### Phase 1 — PlayNbuildAnything beta
 
 Introduce project accounts, cloud-saved dossiers, version history, prompt-to-brief orchestration, shareable read-only links and a small set of curated creation worlds.
 
@@ -169,4 +175,4 @@ A world is ready only when it has:
 
 ## Master build prompt
 
-> Design and implement the next vertical of **BuildNplayAnything** as a high-end, trilingual, playful creation system. Preserve the Atelier Quiet Luxury language for the founding Rasyne Deco world, while allowing future worlds to develop their own visual language. Let users start with text, voice or an image, then play with a responsive 3D world, compare variations, inspect materials, adjust constraints and save a project dossier. Translate creative play into a structured brief that can be reviewed by a real atelier or another trusted builder. Keep AI outputs visibly provisional until validated. Support English, French and Arabic with true RTL composition, keyboard accessibility, reduced motion and clear states for loading, uncertainty, privacy and human review. Extend the existing Rasyne Deco foundation instead of replacing it. Build in small typed modules, test pure rules, preserve provenance, avoid fake testimonials and never promise that an imagined object is automatically safe, affordable or manufacturable.
+> Design and implement the next vertical of **PlayNbuildAnything** as a high-end, trilingual, playful creation system. Preserve the Atelier Quiet Luxury language for the founding Rasyne Deco world, while allowing future worlds to develop their own visual language. Let users start with text, voice or an image, then play with a responsive 3D world, compare variations, inspect materials, adjust constraints and save a project dossier. Translate creative play into a structured brief that can be reviewed by a real atelier or another trusted builder. Keep AI outputs visibly provisional until validated. Support English, French and Arabic with true RTL composition, keyboard accessibility, reduced motion and clear states for loading, uncertainty, privacy and human review. Extend the existing Rasyne Deco foundation instead of replacing it. Build in small typed modules, test pure rules, preserve provenance, avoid fake testimonials and never promise that an imagined object is automatically safe, affordable or manufacturable.
